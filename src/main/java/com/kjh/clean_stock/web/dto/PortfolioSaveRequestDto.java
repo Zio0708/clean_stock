@@ -1,5 +1,5 @@
 package com.kjh.clean_stock.web.dto;
-
+import com.kjh.clean_stock.domain.portfolio.Portfolio;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,8 @@ public class PortfolioSaveRequestDto {
     public PortfolioSaveRequestDto(String name){
         this.name= name;
     }
-    public Portfolio toEntitiy(){
+
+    public Portfolio toEntity(){
         return Portfolio.builder()
                 .name(name)
                 .build();

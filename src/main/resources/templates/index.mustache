@@ -1,0 +1,39 @@
+{{>layout/header}}
+
+<h1>Clean_stock</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/portfolio/save" role="button" class="btn btn-primary">글 등록</a>
+            {{#userName}} <!-- 머스태치 특성상 if 문이없기때문에 최종값 userName의 진위만 판단함-->
+                Logged in as : <span id = "user">{{userName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 로그아웃은 기본제공이라구~-->
+            {{/userName}}
+            {{^userName}}<!-- 없을 때에는 ^를 사용하여 준다-->
+                <a href = "/oauth2/authorization/google" class ="btn btn-success active" role="button">Google Login</a>
+                <a href = "/oauth2/authorization/naver" class ="btn btn-secondary active" role="button">Naver Login</a>
+            {{/userName}}
+        </div>
+    </div>
+    <br>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>이름</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#posts}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/portfolio/update/{{id}}">{{name}}</a></td>
+                <td>{{modifiedDate}}</td>
+            </tr>
+        {{/posts}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}

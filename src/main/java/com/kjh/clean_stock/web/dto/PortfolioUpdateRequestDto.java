@@ -16,7 +16,8 @@ public class PortfolioUpdateRequestDto {
     }
     public Portfolio toEntity(){
         return Portfolio.builder()
-                .name(name);
+                .name(name)
+                .build();
     }
 
 }
