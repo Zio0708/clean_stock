@@ -1,0 +1,31 @@
+{{>layout/header}}
+
+<h1     style = "padding: 10pt;">Clean_stock</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/portfolio/save" role="button" class="btn btn-primary">포트폴리오 등록</a>
+        </div>
+    </div>
+    <br>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>이름</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#portfolio}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/portfolio/update/{{id}}">{{name}}</a></td>
+                <td>{{modifiedDate}}</td>
+            </tr>
+        {{/portfolio}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}

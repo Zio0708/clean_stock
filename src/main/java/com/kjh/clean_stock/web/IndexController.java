@@ -1,6 +1,8 @@
 package com.kjh.clean_stock.web;
 
 
+import com.kjh.clean_stock.config.auth.LoginUser;
+import com.kjh.clean_stock.config.auth.dto.SessionUser;
 import com.kjh.clean_stock.service.portfolio.PortfolioService;
 import com.kjh.clean_stock.web.dto.PortfolioResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +17,12 @@ public class IndexController {
     private final PortfolioService portfolioService;
 
     @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("posts",portfolioService.findAllDesc());
+    public String index(Model model , @LoginUser SessionUser user){
+        model.addAttribute("portfolio",portfolioService.findAllDesc());
+        if(user != null){
+            System.out.println("이메일 확인"+ user.getEmail() + " "+user.getName());
+            model.addAttribute("userEmail", user.getEmail());//없으면 로그인 버튼 노출
+        }
         return "index";
     }
     @GetMapping("/portfolio/save")

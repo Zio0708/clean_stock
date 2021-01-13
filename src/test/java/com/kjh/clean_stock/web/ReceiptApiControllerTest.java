@@ -4,6 +4,7 @@ package com.kjh.clean_stock.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
+import com.kjh.clean_stock.domain.receipt.ReceiptRepository;
 import com.kjh.clean_stock.web.dto.PortfolioSaveRequestDto;
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PortfolioApiControllerTest {
+public class ReceiptApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -48,18 +49,18 @@ public class PortfolioApiControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private PortfolioRepository portfolioRepository;
+    private ReceiptRepository receiptRepository;
 
     @After
     public void tearDown() throws Exception{
-        portfolioRepository.deleteAll();
+        receiptRepository.deleteAll();
     }
 
     @Test
     @WithMockUser(roles="USER")
-    public void Portfolio_등록() throws Exception{
+    public void Receipt_등록() throws Exception{
         String name ="name";
-        PortfolioSaveRequestDto requestDto = PortfolioSaveRequestDto.builder()
+        ReceiptSaveRequestDto requestDto = PortfolioSaveRequestDto.builder()
                 .name(name)
                 .build();
 
@@ -69,7 +70,7 @@ public class PortfolioApiControllerTest {
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
 
-        List<Portfolio> all =portfolioRepository.findAll();
+        List<Portfolio> all =receiptRepository.findAll();
 
         assertThat(all.get(0).getName()).isEqualTo(name);
     }

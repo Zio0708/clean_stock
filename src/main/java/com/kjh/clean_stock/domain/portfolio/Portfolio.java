@@ -14,6 +14,7 @@ public class Portfolio extends BaseTimeEntity{
 
     @Id//테이블의 pk필드
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="PORTFOLIO_ID")
     private Long id;//엔간하면 long 타입 자동증가를 쓰자
 
     @Column(length = 100, nullable = false)

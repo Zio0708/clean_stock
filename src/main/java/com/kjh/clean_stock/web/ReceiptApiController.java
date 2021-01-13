@@ -1,7 +1,6 @@
 package com.kjh.clean_stock.web;
 
 
-import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.service.portfolio.PortfolioService;
 import com.kjh.clean_stock.web.dto.PortfolioResponseDto;
 import com.kjh.clean_stock.web.dto.PortfolioSaveRequestDto;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-public class PortfolioApiController {
+public class ReceiptApiController {
     public final PortfolioService portfolioService;
 
     @PostMapping("/api/v1/portfolio")
