@@ -4,8 +4,11 @@ package com.kjh.clean_stock.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
+import com.kjh.clean_stock.domain.receipt.Receipt;
 import com.kjh.clean_stock.domain.receipt.ReceiptRepository;
 import com.kjh.clean_stock.web.dto.PortfolioSaveRequestDto;
+import com.kjh.clean_stock.web.dto.ReceiptApiSaveDto;
+import com.kjh.clean_stock.web.dto.ReceiptSaveRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +24,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,9 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ReceiptApiControllerTest {
 
-    @LocalServerPort
-    private int port;
-
+    @Autowired
+    private WebApplicationContext context;
     private MockMvc mvc;
 
     @Before
@@ -44,6 +48,8 @@ public class ReceiptApiControllerTest {
                 .apply(springSecurity())
                 .build();
     }
+    @LocalServerPort
+    private int port;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -59,19 +65,24 @@ public class ReceiptApiControllerTest {
     @Test
     @WithMockUser(roles="USER")
     public void Receipt_등록() throws Exception{
-        String name ="name";
-        ReceiptSaveRequestDto requestDto = PortfolioSaveRequestDto.builder()
-                .name(name)
+        String name ="테스트_제목";
+        int stockCnt =10;
+        Long stockAvr = 100L;
+        Long portfolio_id =1L;
+        ReceiptApiSaveDto requestDto = ReceiptApiSaveDto.builder()
+                .stockCnt(stockCnt)
+                .stockAvr(stockAvr)
+                .portfolio_id(portfolio_id)
                 .build();
 
-        String url = "http://localhost:"+port+"/api/v1/portfolio";
+        String url = "http://localhost:"+port+"/api/v1/receipt";
         mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
 
-        List<Portfolio> all =receiptRepository.findAll();
+        List<Receipt> all =receiptRepository.findAll();
 
-        assertThat(all.get(0).getName()).isEqualTo(name);
+        assertThat(all.get(0).getStockAvr()).isEqualTo(stockAvr);
     }
 }

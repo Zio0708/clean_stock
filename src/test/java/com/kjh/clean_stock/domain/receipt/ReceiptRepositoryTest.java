@@ -1,5 +1,7 @@
 package com.kjh.clean_stock.domain.receipt;
 
+import com.kjh.clean_stock.domain.portfolio.Portfolio;
+import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
 import com.kjh.clean_stock.domain.receipt.*;
 import org.junit.After;
 import org.junit.Test;
@@ -17,6 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ReceiptRepositoryTest {
     @Autowired
     ReceiptRepository receiptRepository;
+    @Autowired
+    PortfolioRepository portfolioRepository;
 
     @After
     public void cleanup(){
@@ -25,11 +29,21 @@ public class ReceiptRepositoryTest {
 
     @Test
     public void 주식주문_불러오기(){
+        String name ="테스트_제목";
         int stockCnt =10;
         Long stockAvr = 100L;
+        portfolioRepository.save(Portfolio.builder()
+                .name(name)
+                .build());
+
+        List<Portfolio> portfolioLists = portfolioRepository.findAll();
+
+        Portfolio portfolio = portfolioLists.get(0);
+
         receiptRepository.save(Receipt.builder()
                 .stockCnt(stockCnt)
                 .stockAvr(stockAvr)
+                .portfolio(portfolio)
                 .build());
 
         List<Receipt> receiptLists = receiptRepository.findAll();

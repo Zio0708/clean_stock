@@ -1,6 +1,7 @@
 package com.kjh.clean_stock.domain.receipt;
 
 
+import com.kjh.clean_stock.domain.portfolio.BaseTimeEntity;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity//테이블과 링크함
-public class Receipt{
+public class Receipt extends BaseTimeEntity{
 
     @Id//테이블의 pk필드
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,16 +27,18 @@ public class Receipt{
 
     @ManyToOne
     @JoinColumn(name="PORTFOLIO_ID")
-    private Portfolio portfolio;
+    private Portfolio portfolio;//id만 받는줄 알았는데 포트폴리오를 통째로 가져오는것이 맞는가?
 
     @Builder
-    public Receipt(int stockCnt, Long stockAvr){
+    public Receipt(int stockCnt, Long stockAvr,Portfolio portfolio){
         this.stockCnt = stockCnt;
         this.stockAvr = stockAvr;
+        this.portfolio = portfolio;
     }
 
-    public void update(int stockCnt, Long stockAvr){
+    public void update(int stockCnt, Long stockAvr,Portfolio portfolio){
         this.stockCnt = stockCnt;
         this.stockAvr = stockAvr;
+        this.portfolio = portfolio;
     }
 }

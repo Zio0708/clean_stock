@@ -1,20 +1,21 @@
 package com.kjh.clean_stock.web.dto;
 
+
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.receipt.Receipt;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
-public class ReceiptResponseDto {
+public class ReceiptListResponseDto {
     private Long id;
     private int stockCnt;
     private Long stockAvr;
-    private Long portfolio_id;
 
-    public ReceiptResponseDto(Receipt entity){
+    public ReceiptListResponseDto(Receipt entity){
         this.id =entity.getId();
         this.stockCnt = entity.getStockCnt();
         this.stockAvr = entity.getStockAvr();
-        this.portfolio_id = entity.getPortfolio().getId(); //다대일 관계에서 부모키를 가져오는 방법은 뭘까?
     }
 }

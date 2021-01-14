@@ -29,19 +29,19 @@
     </div>
     <br>
     <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
+    <table class="table table-horizontal">
+<!--        <thead class="thead-strong">-->
         <tr>
-            <th>번호</th>
-            <th>포트폴리오명</th>
-            <th>최종수정일</th>
+            <th>#</th>
+            <th>name</th>
+            <th>modified_date</th>
         </tr>
-        </thead>
+<!--        </thead>-->
         <tbody id="tbody">
         {{#portfolio}}
             <tr>
                 <td>{{id}}</td>
-                <td><a href="/portfolio/update/{{id}}">{{name}}</a></td>
+                <td><a href="/portfolio/detail/{{id}}">{{name}}</a></td>
                 <td>{{modifiedDate}}</td>
             </tr>
         {{/portfolio}}

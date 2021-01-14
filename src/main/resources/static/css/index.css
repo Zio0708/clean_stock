@@ -1,12 +1,20 @@
 header{
     z-index: 997;
 }
-
+body{
+    background: #27b06e;
+}
 .header_area{
     position: sticky;
     top: 0;
 }
-
+.table-horizontal{
+    background: #ffffff;
+    border-radius:10px;
+}
+.row{
+    padding-top: 20px;
+}
 .header_body{
     display: flex;
     height: 100%;
@@ -16,6 +24,7 @@ header{
     border-bottom: 1px solid #e7e7e7;
     position: relative;
     z-index: 10;
+    border-bottom: 1px solid #e7e7e7;
 }
 
 .header_logo{
