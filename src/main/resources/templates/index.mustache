@@ -1,52 +1,13 @@
 {{>layout/header}}
-<header class = "header_area">
-    <div class="header_body">
-        <div class="header_logo">
-            <h2>Clean_stock</h2>
-        </div>
-        <nav class="header_menu">
-            <div class="dropdown">
-            </div>
-        </nav>
-        <div class="header_side">
-            {{#userEmail}} <!-- 머스태치 특성상 if 문이없기때문에 최종값 userName의 진위만 판단함-->
-                Logged in as : <span id = "user">{{userEmail}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 로그아웃은 기본제공이라구~-->
-            {{/userEmail}}
-            {{^userEmail}}<!-- 없을 때에는 ^를 사용하여 준다-->
-                <a href = "/oauth2/authorization/google" class ="btn btn-secondary active" role="button">Google Login</a>
-                <a href = "/oauth2/authorization/naver" class ="btn btn-success active" role="button">Naver Login</a>
-            {{/userEmail}}
-        </div>
-    </div>
-</header>
 
+
+
+{{>layout/tradingview-widget}}
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-12">
-            <a href="/portfolio/save" role="button" class="btn btn-primary">포트폴리오 등록</a>
+            <a href="/portfolio/save" role="button" class="btn btn-info active">포트폴리오 등록</a>
         </div>
     </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal">
-<!--        <thead class="thead-strong">-->
-        <tr>
-            <th>#</th>
-            <th>name</th>
-            <th>modified_date</th>
-        </tr>
-<!--        </thead>-->
-        <tbody id="tbody">
-        {{#portfolio}}
-            <tr>
-                <td>{{id}}</td>
-                <td><a href="/portfolio/detail/{{id}}">{{name}}</a></td>
-                <td>{{modifiedDate}}</td>
-            </tr>
-        {{/portfolio}}
-        </tbody>
-    </table>
 </div>
-
 {{>layout/footer}}

@@ -39,9 +39,17 @@ body{
     display: flex;
     align-items: center;
     height: 100%;
+    margin-left: 15px;
 }
 
 .header_side{
     margin-left:auto;
+}
+.tradingview-wrapper{
+    margin : 15px;
+    height:70vh;
+}
+.tradingview-widget-container div div {
+    height: 70vh !important;
 }
 

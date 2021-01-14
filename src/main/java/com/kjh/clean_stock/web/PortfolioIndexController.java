@@ -19,14 +19,13 @@ public class PortfolioIndexController {
     private final PortfolioService portfolioService;
     private final ReceiptService receiptService;
 
-    @GetMapping("/")
+    @GetMapping("/portfolio")
     public String index(Model model , @LoginUser SessionUser user){
         model.addAttribute("portfolio",portfolioService.findAllDesc());
         if(user != null){
-            System.out.println("이메일 확인"+ user.getEmail() + " "+user.getName());
             model.addAttribute("userEmail", user.getEmail());//없으면 로그인 버튼 노출
         }
-        return "index";
+        return "portfolio";
     }
     @GetMapping("/portfolio/save")
     public String portfolioSave(){

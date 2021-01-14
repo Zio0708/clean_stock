@@ -7,3 +7,26 @@
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
+<header class = "header_area">
+    <div class="header_body">
+        <div class="header_logo">
+            <h2>Clean_stock</h2>
+        </div>
+        <nav class="header_menu">
+            <div class="dropdown">
+                <a href = "/" class ="btn" role="button">차트</a>
+                <a href = "/portfolio" class ="btn" role="button">포트폴리오</a>
+            </div>
+        </nav>
+        <div class="header_side">
+            {{#userEmail}} <!-- 머스태치 특성상 if 문이없기때문에 최종값 userName의 진위만 판단함-->
+                Logged in as : <span id = "user">{{userEmail}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 로그아웃은 기본제공이라구~-->
+            {{/userEmail}}
+            {{^userEmail}}<!-- 없을 때에는 ^를 사용하여 준다-->
+                <a href = "/oauth2/authorization/google" class ="btn btn-secondary active" role="button">Google Login</a>
+                <a href = "/oauth2/authorization/naver" class ="btn btn-success active" role="button">Naver Login</a>
+            {{/userEmail}}
+        </div>
+    </div>
+</header>

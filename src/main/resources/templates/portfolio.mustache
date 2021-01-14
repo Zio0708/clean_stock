@@ -1,6 +1,6 @@
 {{>layout/header}}
 
-<h1     style = "padding: 10pt;">Clean_stock</h1>
+
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-12">
@@ -10,12 +10,13 @@
     <br>
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal">
-<!--        <thead class="thead-strong">-->
+        <!--        <thead class="thead-strong">-->
         <tr>
-            <th>포트폴리오 명</th>
-            <th>최종수정일</th>
+            <th>#</th>
+            <th>name</th>
+            <th>modified_date</th>
         </tr>
-<!--        </thead>-->
+        <!--        </thead>-->
         <tbody id="tbody">
         {{#portfolio}}
             <tr>
@@ -24,11 +25,7 @@
                 <td>{{modifiedDate}}</td>
             </tr>
         {{/portfolio}}
-        {{^portfolio}}
-            <h1>포트폴리오가 존재하지 않습니다.</h1>
-        {{/portfolio}}
         </tbody>
     </table>
 </div>
-
 {{>layout/footer}}
