@@ -13,15 +13,22 @@
         <!--        <thead class="thead-strong">-->
         <tr>
             <th>#</th>
-            <th>name</th>
-            <th>modified_date</th>
+            <th>이름</th>
+            <th>평가 금액</th>
+            <th>평가 손익</th>
+            <th>수익률</th>
+            <th>작성 날짜</th>
+
         </tr>
         <!--        </thead>-->
         <tbody id="tbody">
         {{#portfolio}}
             <tr>
                 <td>{{id}}</td>
-                <td><a href="/portfolio/detail/{{id}}">{{name}}</a></td>
+                <td><a href="/portfolio/detail/{{id}}">{{name}}</td>
+                <td>1000$</td>
+                <td>+100$</td>
+                <td>10%</td>
                 <td>{{modifiedDate}}</td>
             </tr>
         {{/portfolio}}

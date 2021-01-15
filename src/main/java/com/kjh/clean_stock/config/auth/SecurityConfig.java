@@ -31,6 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             .userService(customOAuth2UserService);//으음...로그인 성공시 후속조치를 할 인터페이스를 등록한다(?)
         http
                 .formLogin()
-                    .defaultSuccessUrl("/");
+                    .defaultSuccessUrl("/");//로그인이 성공했을때 어디로 갈지 표시하여 주는 기능
+        //지금은 여기서 만들어준 로그인 화면이 있지만 괜히 사이트 별로 로그인 화면이 있는것이 아니다.
+        //로그인 화면을 만들어서 로그인이 필요한 행동을 할때 그 화면으로 가도록 하자.
     }
 }

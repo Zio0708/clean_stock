@@ -28,13 +28,18 @@ public class PortfolioIndexController {
         return "portfolio";
     }
     @GetMapping("/portfolio/save")
-    public String portfolioSave(){
+    public String portfolioSave(Model model, @LoginUser SessionUser user){
+        if(user != null){
+            model.addAttribute("userEmail", user.getEmail());//없으면 로그인 버튼 노출
+        }
         return "portfolio-save";
     }
 
     @GetMapping("/portfolio/detail/{id}")
-    public String portfolioUpdate(@PathVariable Long id , Model model){
-
+    public String portfolioUpdate(@PathVariable Long id , Model model,@LoginUser SessionUser user){
+        if(user != null){
+            model.addAttribute("userEmail", user.getEmail());//없으면 로그인 버튼 노출
+        }
         PortfolioResponseDto portfolioResponseDto=  portfolioService.findById(id);
         model.addAttribute("portfolio",portfolioResponseDto);
         model.addAttribute("receipt",receiptService.findAllDesc());

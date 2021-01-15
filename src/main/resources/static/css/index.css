@@ -19,6 +19,7 @@ body{
     display: flex;
     height: 100%;
     align-items: center;
+    flex-flow: row nowrap;
     padding: 0 14px;
     background: #fff;
     border-bottom: 1px solid #e7e7e7;
@@ -38,18 +39,33 @@ body{
 .header_menu{
     display: flex;
     align-items: center;
+    flex-flow: row nowrap;
     height: 100%;
     margin-left: 15px;
 }
 
 .header_side{
     margin-left:auto;
+    flex-flow: row nowrap;
 }
 .tradingview-wrapper{
     margin : 15px;
     height:70vh;
 }
 .tradingview-widget-container div div {
-    height: 70vh !important;
+    height: 85vh !important;
+    width: 150vh !important;
+    border-radius:3px;
 }
-
+.index-container{
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.index-portfolio-wrapper{
+    margin: 15px 15px 15px 0;
+    background-color:#ffffff;
+    border-radius:3px;
+    width:50vh;
+    height: 85vh;
+}

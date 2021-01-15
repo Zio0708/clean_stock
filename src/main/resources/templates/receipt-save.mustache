@@ -4,13 +4,13 @@
         <div class="col-md-4">
             <form>
                 <div class = "form-group">
-                    <input type = "text" class = "form-control" id ="portfolio_id" value="{{portfolio_id}}">
+                    <input type = "text" class = "form-control" id ="portfolio_id" value="{{portfolio_id}}" readonly>
                     <input type = "text" class = "form-control" id ="stockCnt" placeholder="자산 수량">
                     <input type = "text" class = "form-control" id ="stockAvr" placeholder="평균 단가">
                 </div>
             </form>
-            <a href="/" role = "button" clas="btn btn-secondary">취소</a>
             <button type = "button" class = "btn btn-primary" id ="receipt-save">등록</button>
+            <a href="/" role = "button" clas="btn btn-secondary">취소</a>
         </div>
     </div>
 {{>layout/footer}}

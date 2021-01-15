@@ -1,13 +1,42 @@
 {{>layout/header}}
 
 
-
+<div class="index-container">
 {{>layout/tradingview-widget}}
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-12">
-            <a href="/portfolio/save" role="button" class="btn btn-info active">포트폴리오 등록</a>
+<!--<div class="col-md-12">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <a href="/portfolio/save" role="button" class="btn btn-info active">포트폴리오 등록</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+    <div class="index-portfolio-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                 포트폴리오 이름 들어갈 공간
+            </div>
         </div>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>자산 이름</th>
+                <th>보유 수량</th>
+                <th>평균 단가</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#receipt}}
+                <tr>
+                    <td>자산 이름</td>
+                    <td>{{stockCnt}}</td>
+                    <td>{{stockAvr}}</td>
+                </tr>
+            {{/receipt}}
+            </tbody>
+        </table>
+        {{^receipt}}
+            <h4>자산이 존재하지 않습니다</h4>
+        {{/receipt}}
     </div>
 </div>
 {{>layout/footer}}

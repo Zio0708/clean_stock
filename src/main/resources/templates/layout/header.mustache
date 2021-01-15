@@ -20,8 +20,9 @@
         </nav>
         <div class="header_side">
             {{#userEmail}} <!-- 머스태치 특성상 if 문이없기때문에 최종값 userName의 진위만 판단함-->
-                Logged in as : <span id = "user">{{userEmail}}</span>
+                user : <span id = "user">{{userEmail}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 로그아웃은 기본제공이라구~-->
+                <img src="https://lh3.googleusercontent.com/ogw/ADGmqu8m-HrvWTlHE-qs2j_mn4_Pr49Lxdj8p9jL2y0d=s32-c-mo"/>
             {{/userEmail}}
             {{^userEmail}}<!-- 없을 때에는 ^를 사용하여 준다-->
                 <a href = "/oauth2/authorization/google" class ="btn btn-secondary active" role="button">Google Login</a>
