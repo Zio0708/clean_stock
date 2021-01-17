@@ -1,4 +1,4 @@
-package com.kjh.clean_stock.web.dto;
+package com.kjh.clean_stock.web.dto.Receipt;
 
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.receipt.Receipt;
@@ -8,15 +8,16 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ReceiptApiUpdateDto {
+public class ReceiptApiSaveDto {
     private int stockCnt;
     private Long stockAvr;
     private Long portfolio_id;
 
     @Builder
-    public ReceiptApiUpdateDto(int stockCnt, Long stockAvr, Long portfolio_id){
+    public ReceiptApiSaveDto(int stockCnt, Long stockAvr, Long portfolio_id){
         this.stockCnt= stockCnt;
         this.stockAvr=stockAvr;
-        this.portfolio_id=portfolio_id;
+        this.portfolio_id= portfolio_id;
     }
+
 }

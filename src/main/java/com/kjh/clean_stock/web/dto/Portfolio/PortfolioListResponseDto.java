@@ -1,4 +1,4 @@
-package com.kjh.clean_stock.web.dto;
+package com.kjh.clean_stock.web.dto.Portfolio;
 
 
 import com.kjh.clean_stock.domain.portfolio.Portfolio;

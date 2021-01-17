@@ -4,10 +4,10 @@ package com.kjh.clean_stock.service.portfolio;
 
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
-import com.kjh.clean_stock.web.dto.PortfolioListResponseDto;
-import com.kjh.clean_stock.web.dto.PortfolioResponseDto;
-import com.kjh.clean_stock.web.dto.PortfolioSaveRequestDto;
-import com.kjh.clean_stock.web.dto.PortfolioUpdateRequestDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioListResponseDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioResponseDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioSaveRequestDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

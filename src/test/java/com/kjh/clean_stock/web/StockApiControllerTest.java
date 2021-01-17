@@ -2,9 +2,10 @@ package com.kjh.clean_stock.web;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kjh.clean_stock.domain.receipt.Receipt;
-import com.kjh.clean_stock.domain.receipt.ReceiptRepository;
-import com.kjh.clean_stock.web.dto.Receipt.ReceiptApiSaveDto;
+import com.kjh.clean_stock.domain.portfolio.Portfolio;
+import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
+import com.kjh.clean_stock.domain.stock.StockRepository;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioSaveRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
@@ -29,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ReceiptApiControllerTest {
+public class StockApiControllerTest {
 
     @Autowired
     private WebApplicationContext context;
@@ -49,34 +50,25 @@ public class ReceiptApiControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private ReceiptRepository receiptRepository;
+    private StockRepository stockRepository;
 
     @After
     public void tearDown() throws Exception{
-        receiptRepository.deleteAll();
+        stockRepository.deleteAll();
     }
 
-    @Test
-    @WithMockUser(roles="USER")
-    public void Receipt_등록() throws Exception{
-        String name ="테스트_제목";
-        int stockCnt =10;
-        Long stockAvr = 100L;
-        Long portfolio_id =1L;
-        ReceiptApiSaveDto requestDto = ReceiptApiSaveDto.builder()
-                .stockCnt(stockCnt)
-                .stockAvr(stockAvr)
-                .portfolio_id(portfolio_id)
-                .build();
-
-        String url = "http://localhost:"+port+"/api/v1/receipt";
-        mvc.perform(post(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
-
-        List<Receipt> all =receiptRepository.findAll();
-
-        assertThat(all.get(0).getStockAvr()).isEqualTo(stockAvr);
-    }
+//    @Test
+//    @WithMockUser(roles="USER")
+//    public void 코스피_등록() throws Exception{
+//
+//        String url = "http://localhost:"+port+"/api/v1/stock-kospi";
+//        mvc.perform(post(url)
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(new ObjectMapper().writeValueAsString(requestDto)))
+//                .andExpect(status().isOk());
+//
+//        List<Portfolio> all =portfolioRepository.findAll();
+//
+//        assertThat(all.get(0).getName()).isEqualTo(name);
+//    }
 }

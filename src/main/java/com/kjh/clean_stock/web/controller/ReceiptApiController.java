@@ -1,8 +1,10 @@
-package com.kjh.clean_stock.web;
+package com.kjh.clean_stock.web.controller;
 
 
 import com.kjh.clean_stock.service.receipt.ReceiptService;
-import com.kjh.clean_stock.web.dto.*;
+import com.kjh.clean_stock.web.dto.Receipt.ReceiptApiSaveDto;
+import com.kjh.clean_stock.web.dto.Receipt.ReceiptApiUpdateDto;
+import com.kjh.clean_stock.web.dto.Receipt.ReceiptResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

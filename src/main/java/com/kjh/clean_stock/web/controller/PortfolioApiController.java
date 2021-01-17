@@ -1,11 +1,10 @@
-package com.kjh.clean_stock.web;
+package com.kjh.clean_stock.web.controller;
 
 
-import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.service.portfolio.PortfolioService;
-import com.kjh.clean_stock.web.dto.PortfolioResponseDto;
-import com.kjh.clean_stock.web.dto.PortfolioSaveRequestDto;
-import com.kjh.clean_stock.web.dto.PortfolioUpdateRequestDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioResponseDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioSaveRequestDto;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

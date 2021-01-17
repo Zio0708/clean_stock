@@ -1,7 +1,5 @@
 package com.kjh.clean_stock.domain.portfolio;
 
-import com.kjh.clean_stock.domain.portfolio.Portfolio;
-import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
