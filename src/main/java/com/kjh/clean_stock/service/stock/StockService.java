@@ -1,10 +1,8 @@
 package com.kjh.clean_stock.service.stock;
 
-import com.kjh.clean_stock.domain.portfolio.Portfolio;
+import com.kjh.clean_stock.domain.stock.Stock;
 import com.kjh.clean_stock.domain.stock.StockRepository;
-import com.kjh.clean_stock.web.dto.Portfolio.PortfolioSaveRequestDto;
-import com.kjh.clean_stock.web.dto.Receipt.ReceiptApiSaveDto;
-import com.kjh.clean_stock.web.dto.Receipt.ReceiptSaveRequestDto;
+import com.kjh.clean_stock.web.dto.Stock.StockResponseDto;
 import com.kjh.clean_stock.web.dto.Stock.StockSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
@@ -18,6 +16,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor
 @Service
@@ -29,8 +28,9 @@ public class StockService {
         return stockRepository.save(requestDto.toEntity()).getId();
     }
     @Transactional
-    public void saveKOSPI() throws IOException {
+    public void saveKOSPI() throws IOException, InterruptedException {
         for (int i = 0; i<32 ;i++){
+            TimeUnit.SECONDS.sleep(5);
             List<String> cnt = crawling(i);
             for(int j=0;j<cnt.size();j++){
                 String[] ary=cnt.get(j).split("/");
@@ -68,5 +68,22 @@ public class StockService {
         }
         //System.out.println(elem.text());
         return list;
+    }
+    public List findByName(String name) {
+        List<Stock> stockAry = stockRepository.findByName(name);
+        List<StockResponseDto> stockResponseDtos=new ArrayList<>();
+        for(Stock s : stockAry){
+            stockResponseDtos.add(new StockResponseDto(s));
+        }
+        return stockResponseDtos;
+    }
+
+    public List<StockResponseDto> findByTicker(String ticker) {
+        List<Stock> stockAry = stockRepository.findByTicker(ticker);
+        List<StockResponseDto> stockResponseDtos=new ArrayList<>();
+        for(Stock s : stockAry){
+            stockResponseDtos.add(new StockResponseDto(s));
+        }
+        return stockResponseDtos;
     }
 }
