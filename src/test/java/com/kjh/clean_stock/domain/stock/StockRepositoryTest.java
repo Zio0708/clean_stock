@@ -3,6 +3,7 @@ package com.kjh.clean_stock.domain.stock;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
 import com.kjh.clean_stock.service.stock.StockService;
+import com.kjh.clean_stock.web.dto.Stock.StockListResponseDto;
 import com.kjh.clean_stock.web.dto.Stock.StockResponseDto;
 import org.junit.After;
 import org.junit.Test;
@@ -63,8 +64,8 @@ public class StockRepositoryTest {
     public void 주식_이름_검색(){
         KOSPI_불러오기();
         String name = "삼성전자";
-        List<StockResponseDto> stockAry=stockService.findByName(name);
-        for(StockResponseDto s : stockAry){
+        List<StockListResponseDto> stockAry=stockService.findByName(name);
+        for(StockListResponseDto s : stockAry){
             System.out.println(s.getName());
         }
     }
