@@ -9,5 +9,5 @@ import java.util.List;
 public interface ReceiptRepository extends JpaRepository<Receipt, Long> {
     @Query("SELECT p FROM Receipt p ORDER BY p.id DESC")
     List<Receipt> findAllDesc();
-
+    List<Receipt> findByPortfolio_id(Long id);
 }

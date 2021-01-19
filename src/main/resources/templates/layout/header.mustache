@@ -20,6 +20,9 @@
             </div>
         </nav>
         <div class="header_side">
+            {{#userId}}
+                <input type = "hidden" class = "form-control" id ="user_id" value={{userId}}>
+            {{/userId}}
             {{#userEmail}} <!-- 머스태치 특성상 if 문이없기때문에 최종값 userName의 진위만 판단함-->
                 user : <span id = "user">{{userEmail}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 로그아웃은 기본제공이라구~-->

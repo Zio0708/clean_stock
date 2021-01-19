@@ -3,6 +3,7 @@ package com.kjh.clean_stock.domain.receipt;
 
 import com.kjh.clean_stock.domain.portfolio.BaseTimeEntity;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
+import com.kjh.clean_stock.domain.stock.Stock;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,16 +30,22 @@ public class Receipt extends BaseTimeEntity{
     @JoinColumn(name="PORTFOLIO_ID")
     private Portfolio portfolio;//id만 받는줄 알았는데 포트폴리오를 통째로 가져오는것이 맞는가?
 
+    @ManyToOne
+    @JoinColumn(name="STOCK_ID")
+    private Stock stock;
+
     @Builder
-    public Receipt(int stockCnt, Long stockAvr,Portfolio portfolio){
+    public Receipt(int stockCnt, Long stockAvr,Portfolio portfolio,Stock stock){
         this.stockCnt = stockCnt;
         this.stockAvr = stockAvr;
         this.portfolio = portfolio;
+        this.stock = stock;
     }
 
     public void update(int stockCnt, Long stockAvr,Portfolio portfolio){
         this.stockCnt = stockCnt;
         this.stockAvr = stockAvr;
         this.portfolio = portfolio;
+        this.stock = stock;
     }
 }

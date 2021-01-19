@@ -2,6 +2,7 @@ package com.kjh.clean_stock.web.controller;
 
 
 import com.kjh.clean_stock.service.portfolio.PortfolioService;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioApiSaveDto;
 import com.kjh.clean_stock.web.dto.Portfolio.PortfolioResponseDto;
 import com.kjh.clean_stock.web.dto.Portfolio.PortfolioSaveRequestDto;
 import com.kjh.clean_stock.web.dto.Portfolio.PortfolioUpdateRequestDto;
@@ -14,7 +15,7 @@ public class PortfolioApiController {
     public final PortfolioService portfolioService;
 
     @PostMapping("/api/v1/portfolio")
-    public Long save (@RequestBody PortfolioSaveRequestDto requestDto){
+    public Long save (@RequestBody PortfolioApiSaveDto requestDto){
         return portfolioService.save(requestDto);
     }
     @PutMapping("/api/v1/portfolio/{id}")

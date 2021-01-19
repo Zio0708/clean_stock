@@ -1,7 +1,9 @@
 package com.kjh.clean_stock.service.stock;
 
+import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.stock.Stock;
 import com.kjh.clean_stock.domain.stock.StockRepository;
+import com.kjh.clean_stock.web.dto.Portfolio.PortfolioResponseDto;
 import com.kjh.clean_stock.web.dto.Receipt.ReceiptListResponseDto;
 import com.kjh.clean_stock.web.dto.Stock.StockListResponseDto;
 import com.kjh.clean_stock.web.dto.Stock.StockResponseDto;
@@ -85,7 +87,6 @@ public class StockService {
                 .map(StockListResponseDto::new)
                 .collect(Collectors.toList());
     }
-
     public List<StockResponseDto> findByTicker(String ticker) {
         List<Stock> stockAry = stockRepository.findTop5ByTickerLike(ticker);
         List<StockResponseDto> stockResponseDtos=new ArrayList<>();
@@ -93,5 +94,10 @@ public class StockService {
             stockResponseDtos.add(new StockResponseDto(s));
         }
         return stockResponseDtos;
+    }
+    public StockResponseDto findById(Long id){
+        Stock stock = stockRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("자산이 존재하지 않습니다."));
+        return new StockResponseDto(stock);
     }
 }

@@ -4,10 +4,9 @@ package com.kjh.clean_stock.service.portfolio;
 
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
-import com.kjh.clean_stock.web.dto.Portfolio.PortfolioListResponseDto;
-import com.kjh.clean_stock.web.dto.Portfolio.PortfolioResponseDto;
-import com.kjh.clean_stock.web.dto.Portfolio.PortfolioSaveRequestDto;
-import com.kjh.clean_stock.web.dto.Portfolio.PortfolioUpdateRequestDto;
+import com.kjh.clean_stock.domain.user.User;
+import com.kjh.clean_stock.domain.user.UserRepository;
+import com.kjh.clean_stock.web.dto.Portfolio.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +18,15 @@ import java.util.stream.Collectors;
 @Service
 public class PortfolioService {
     private final PortfolioRepository portfolioRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public Long save(PortfolioSaveRequestDto requestDto){
-        System.out.println("뭔지 파악이나 해보자");
-        System.out.println(requestDto.toEntity());
-        return portfolioRepository.save(requestDto.toEntity()).getId();
+    public Long save(PortfolioApiSaveDto requestDto){
+        Long user_id =requestDto.getUser_id();
+        User user = userRepository.findById(user_id)
+                .orElseThrow(() -> new IllegalArgumentException("유저가 존재하지 않습니다."));
+        PortfolioSaveRequestDto requestSaveDto = new PortfolioSaveRequestDto(requestDto.getName(),user);
+        return portfolioRepository.save(requestSaveDto.toEntity()).getId();
     }
 
     public PortfolioResponseDto findById(Long id) {
@@ -43,6 +45,12 @@ public class PortfolioService {
     @Transactional(readOnly = true)
     public List<PortfolioListResponseDto> findAllDesc(){
         return portfolioRepository.findAllDesc().stream()
+                .map(PortfolioListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+    @Transactional(readOnly = true)
+    public List<PortfolioListResponseDto> findByUserId(Long id) {
+        return portfolioRepository.findByUser_id(id).stream()
                 .map(PortfolioListResponseDto::new)
                 .collect(Collectors.toList());
     }

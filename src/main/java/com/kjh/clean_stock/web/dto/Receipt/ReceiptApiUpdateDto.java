@@ -12,11 +12,13 @@ public class ReceiptApiUpdateDto {
     private int stockCnt;
     private Long stockAvr;
     private Long portfolio_id;
+    private Long stock_id;
 
     @Builder
-    public ReceiptApiUpdateDto(int stockCnt, Long stockAvr, Long portfolio_id){
+    public ReceiptApiUpdateDto(int stockCnt, Long stockAvr, Long portfolio_id,Long stock_id){
         this.stockCnt= stockCnt;
         this.stockAvr=stockAvr;
         this.portfolio_id=portfolio_id;
+        this.stock_id=stock_id;
     }
 }

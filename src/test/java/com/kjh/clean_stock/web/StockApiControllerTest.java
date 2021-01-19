@@ -68,7 +68,6 @@ public class StockApiControllerTest {
                 .name(name)
                 .ticker(ticker)
                 .build();
-
         try {
             mvc.perform(post(url)
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -77,6 +76,5 @@ public class StockApiControllerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
