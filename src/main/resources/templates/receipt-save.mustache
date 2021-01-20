@@ -1,16 +1,39 @@
 {{>layout/header}}
-<h1>자산 추가</h1>
+
     <div class="col-md-12">
-        <div class="col-md-4">
+        <h1>자산 추가</h1>
+        <div class="col-md-12">
             <form>
                 <div class = "form-group">
-                    <input type = "text" class = "form-control" id ="portfolio_id" value="{{portfolio_id}}" readonly>
+                    <input type = "hidden" class = "form-control" id ="portfolio_id" value="{{portfolio_id}}" readonly>
+                    <form>
+                        <div class = "form-group">
+                            <div>
+                            <input type = "text" class="form-control" id="stockWord" placeholder="자산명 또는 티커를 입력하세요.">
+                                <input type = "button" class = "btn btn-secondary" id ="select_stock" value=" + ">
+                            </div>
+                            <table class="table table-horizontal table-bordered">
+                                <thead class="thead-strong">
+                                <tr>
+                                    <th>티커</th>
+                                    <th>종목명</th>
+                                    <th>현재가</th>
+                                </tr>
+                                </thead>
+                                <tbody id="stockList">
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <input type = "hidden" class = "form-control" id ="stockId" >
+                    <input type = "text" class = "form-control" id ="stockName"  readonly>
+                    <input type = "text" class = "form-control" id ="stockTicker"  readonly>
                     <input type = "text" class = "form-control" id ="stockCnt" placeholder="자산 수량">
                     <input type = "text" class = "form-control" id ="stockAvr" placeholder="평균 단가">
                 </div>
             </form>
             <button type = "button" class = "btn btn-primary" id ="receipt-save">등록</button>
-            <a href="/" role = "button" clas="btn btn-secondary">취소</a>
+            <a href="/" role = "button" class="btn btn-secondary">취소</a>
         </div>
     </div>
 {{>layout/footer}}

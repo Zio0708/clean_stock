@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,16 +61,33 @@ public class ReceiptService {
         return id;
     }
 
-    @Transactional(readOnly = true)
-    public List<ReceiptListResponseDto> findAllDesc(){
-        return receiptRepository.findAllDesc().stream()
-                .map(ReceiptListResponseDto::new)
-                .collect(Collectors.toList());
-    }
+//    @Transactional(readOnly = true)
+//    public List<ReceiptListResponseDto> findAllDesc(){
+//        return receiptRepository.findAllDesc().stream()
+//                .map(ReceiptListResponseDto::new)
+//                .collect(Collectors.toList());
+//    }
     @Transactional(readOnly = true)
     public List<ReceiptListResponseDto> findByPortfolioId(Long id){
+        //receiptRepository.findByPortfolio_id(id).get(0).getStock().getName();
+        //receiptRepository.findByPortfolio_id(id).get(0).getStock().getTicker();
+        //이것을 List<ReceiptListResponseDto>에 담아서 리턴한다.
+        //수도 코드
+//        List<Receipt> receipt =receiptRepository.findByPortfolio_id(id);
+//        List<ReceiptListResponseDto> receiptAry=new ArrayList<>();
+//        for(Receipt r : receipt){
+//            receiptAry.add(ReceiptListResponseDto.builder()
+//            .entity(r)
+//            .stockName(r.getStock().getName())
+//            .stockTicker(r.getStock().getTicker())
+//            .build());
+//        }//점점 이상해지는거 같은데...리스트에 담겨야 하는 정보를 꺼내기 위해서 이렇게 해야 하는게 맞는가?
+        //자산 구매 항목 내부의 주식정보를 가져온다.
         return receiptRepository.findByPortfolio_id(id).stream()
                 .map(ReceiptListResponseDto::new)
                 .collect(Collectors.toList());
+        //스트림이란 뭘까? 왜쓸까?
     }
+    //포트폴리오 아이디를 통해서 자산 구매 항목 내부의 주식 정보를 꺼내와야 하는데....
+    //
 }

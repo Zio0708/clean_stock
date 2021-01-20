@@ -33,11 +33,11 @@ public class PortfolioIndexController {
             model.addAttribute("userId", user.getId());
             List<PortfolioListResponseDto> portfolioAry = portfolioService.findByUserId(user.getId());
             if (!portfolioAry.isEmpty()) {
-                model.addAttribute("portfolio", portfolioAry.get(0));
-                List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioAry.get(0).getId());
-                if (!receiptList.isEmpty()) {
-                    model.addAttribute("receipt", receiptList);
-                }
+                model.addAttribute("portfolio", portfolioAry);
+//                List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioAry.get(0).getId());
+//                if (!receiptList.isEmpty()) {
+//                    model.addAttribute("receipt", receiptList);
+//                }
             }
         }
         return "portfolio";
@@ -58,8 +58,13 @@ public class PortfolioIndexController {
             model.addAttribute("userId", user.getId());
         }
         PortfolioResponseDto portfolioResponseDto=  portfolioService.findById(id);
-        model.addAttribute("portfolio",portfolioResponseDto);
-        model.addAttribute("receipt",receiptService.findAllDesc());
+        if(portfolioResponseDto != null) {
+            model.addAttribute("portfolio", portfolioResponseDto);
+            List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioResponseDto.getId());
+            if(receiptList !=null){
+                model.addAttribute("receipt",receiptList);
+            }
+        }
         return "portfolio-detail";
     }
 }

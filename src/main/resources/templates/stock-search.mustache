@@ -5,14 +5,18 @@
         <form>
             <div class = "form-group">
                 <input type = "text" id="stockWord" placeholder="자산명 또는 티커를 입력하세요.">
-                <button type="button" id="stock-search">Search</button> <ul id="stockList"></ul>
-                <script type="text/template" id="template">
-                {{#stock}}
-                    <li>
-                        {{name}}
-                    </li>
-                {{/stock}}
-                </script>
+                <button type="button" id="stock-search">Search</button>
+                <table class="table table-horizontal table-bordered">
+                    <thead class="thead-strong">
+                    <tr>
+                        <th>티커</th>
+                        <th>종목명</th>
+                        <th>현재가</th>
+                    </tr>
+                    </thead>
+                    <tbody id="stockList">
+                    </tbody>
+                </table>
             </div>
         </form>
     </div>
