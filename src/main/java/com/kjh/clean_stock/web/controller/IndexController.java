@@ -36,6 +36,8 @@ public class IndexController {
                 List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioAry.get(0).getId());
                 if (!receiptList.isEmpty()) {
                     model.addAttribute("receipt", receiptList);
+                    model.addAttribute("widgetTicker", receiptList.get(0).getStockTicker());
+                    System.out.println(receiptList.get(0).getStockTicker());
                 }
             }
         }//해당 로그인 코드 자체가 반복되는데 이를 줄일수 있는 방법이 있을까?
