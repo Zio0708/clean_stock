@@ -15,6 +15,7 @@ public class ReceiptListResponseDto {
     private Long stockId;
     private String stockName;
     private String stockTicker;
+
     @Builder
     public ReceiptListResponseDto(Receipt entity){
         this.id =entity.getId();

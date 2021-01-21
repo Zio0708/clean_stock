@@ -56,15 +56,16 @@ public class PortfolioIndexController {
         if(user != null){
             model.addAttribute("userEmail", user.getEmail());//없으면 로그인 버튼 노출
             model.addAttribute("userId", user.getId());
-        }
-        PortfolioResponseDto portfolioResponseDto=  portfolioService.findById(id);
-        if(portfolioResponseDto != null) {
-            model.addAttribute("portfolio", portfolioResponseDto);
-            List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioResponseDto.getId());
-            if(receiptList !=null){
-                model.addAttribute("receipt",receiptList);
+            PortfolioResponseDto portfolioResponseDto=  portfolioService.findById(id);
+            if(portfolioResponseDto != null) {
+                model.addAttribute("portfolio", portfolioResponseDto);
+                List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioResponseDto.getId());
+                if(receiptList !=null){
+                    model.addAttribute("receipt",receiptList);
+                }
             }
         }
+
         return "portfolio-detail";
     }
 }

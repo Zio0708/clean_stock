@@ -1,7 +1,7 @@
 {{>layout/header}}
 
     <div class="col-md-12">
-        <h1>자산 추가</h1>
+        <h1>자산 수정</h1>
         <div class="col-md-12">
             <form>
                 <div class = "form-group">
@@ -24,14 +24,15 @@
                             </table>
                         </div>
                     </form>
-                    <input type = "hidden" class = "form-control" id ="stockId" >
-                    <input type = "text" class = "form-control" id ="stockName"  readonly>
-                    <input type = "text" class = "form-control" id ="stockTicker"  readonly>
-                    <input type = "text" class = "form-control" id ="stockCnt" placeholder="자산 수량">
-                    <input type = "text" class = "form-control" id ="stockAvr" placeholder="평균 단가">
+                    <input type = "hidden" class = "form-control" id ="receiptId" value={{receipt.id}}>
+                    <input type = "text" class = "form-control" id ="stockName"  value ={{receipt.stockName}} readonly>
+                    <input type = "text" class = "form-control" id ="stockTicker"  value={{receipt.stockTicker}} readonly>
+                    <input type = "text" class = "form-control" id ="stockCnt" value={{receipt.stockCnt}}>
+                    <input type = "text" class = "form-control" id ="stockAvr" value={{receipt.stockAvr}}>
                 </div>
             </form>
-            <button type = "button" class = "btn btn-primary" id ="receipt-save">등록</button>
+            <button type = "button" class = "btn btn-primary" id ="receipt-update">등록</button>
+            <button type = "button" class = "btn btn-danger" id ="receipt-delete">삭제</button>
             <a href="javascript:history.back();" role = "button" class="btn btn-secondary">취소</a>
         </div>
     </div>

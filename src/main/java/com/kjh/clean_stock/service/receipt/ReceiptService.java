@@ -46,10 +46,12 @@ public class ReceiptService {
         //뭐가 맞는건지 나중에 리팩토링을 통해 알아봐야지
     }
 
-    public ReceiptResponseDto findById(Long id) {
-        Receipt receipt = receiptRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("구입정보가 존재하지 않습니다."));
-        return new ReceiptResponseDto(receipt);
+    public ReceiptListResponseDto findById(Long id) {
+//        Receipt receipt = receiptRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("구입정보가 존재하지 않습니다."));
+//        return new ReceiptResponseDto(receipt);
+        ReceiptListResponseDto ary = new ReceiptListResponseDto(receiptRepository.findById(id).get());
+        return ary;
     }
     @Transactional
     public Long update(Long id, ReceiptApiUpdateDto requestDto) {
@@ -89,5 +91,10 @@ public class ReceiptService {
         //스트림이란 뭘까? 왜쓸까?
     }
     //포트폴리오 아이디를 통해서 자산 구매 항목 내부의 주식 정보를 꺼내와야 하는데....
-    //
+    @Transactional
+    public void delete(Long id){
+        Receipt receipt =receiptRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("해당 게시글 없음. id="+id));
+        receiptRepository.delete(receipt);
+    }
 }

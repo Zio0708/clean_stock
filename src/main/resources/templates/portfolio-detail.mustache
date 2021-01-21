@@ -38,11 +38,11 @@
         {{#receipt}}
             <tr>
                 <td>{{stockTicker}}</td>
-                <td>{{stockName}}</td>
+                <td><a href="/receipt/update/receipt_id/{{id}}">{{stockName}}</td>
                 <td>{{stockCnt}}</td>
                 <td>{{stockAvr}}</td>
                 <td>16%</td>
-
+                <input type="hidden" class="receiptId" value={{id}}>
             </tr>
         {{/receipt}}
         </tbody>
