@@ -13,7 +13,9 @@
     <div class="index-portfolio-wrapper">
         <div class="row">
             <div class="col-md-12">
-                 포트폴리오 이름 들어갈 공간
+                {{#portfolio_id}}
+                    <h4>{{portfolio_id}}의 포트폴리오</h4>
+                {{/portfolio_id}}
             </div>
         </div>
         <table class="table table-horizontal table-bordered">
@@ -22,14 +24,16 @@
                 <th>자산 이름</th>
                 <th>보유 수량</th>
                 <th>평균 단가</th>
+                <th>현재가</th>
             </tr>
             </thead>
             <tbody id="tbody">
             {{#receipt}}
                 <tr>
-                    <td>자산 이름</td>
+                    <td>{{stockName}}</td>
                     <td>{{stockCnt}}</td>
                     <td>{{stockAvr}}</td>
+                    <td>{{stockPrice}}</td>
                 </tr>
             {{/receipt}}
             </tbody>

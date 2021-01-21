@@ -31,6 +31,7 @@
             <th>종목명</th>
             <th>보유 수량</th>
             <th>평균 단가</th>
+            <th>현재가</th>
             <th>수익률</th>
         </tr>
         </thead>
@@ -41,6 +42,7 @@
                 <td><a href="/receipt/update/receipt_id/{{id}}">{{stockName}}</td>
                 <td>{{stockCnt}}</td>
                 <td>{{stockAvr}}</td>
+                <td>{{stockPrice}}</td>
                 <td>16%</td>
                 <input type="hidden" class="receiptId" value={{id}}>
             </tr>
@@ -53,7 +55,6 @@
     <a href="/receipt/save/portfolio_id/{{portfolio.id}}" role="button" class="btn btn-primary">
         자산 등록
     </a>
-    <button type = "button" class = "btn btn-primary" id ="portfolio-update">수정</button>
     <button type = "button" class = "btn btn-danger" id ="portfolio-delete">삭제</button>
 </div>
 

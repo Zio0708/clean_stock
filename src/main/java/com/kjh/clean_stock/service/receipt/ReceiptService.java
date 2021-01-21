@@ -94,7 +94,7 @@ public class ReceiptService {
     @Transactional
     public void delete(Long id){
         Receipt receipt =receiptRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("해당 게시글 없음. id="+id));
+                .orElseThrow(()->new IllegalArgumentException("해당 자산 없음. id="+id));
         receiptRepository.delete(receipt);
     }
 }

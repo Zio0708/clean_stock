@@ -5,6 +5,7 @@ import com.kjh.clean_stock.domain.receipt.Receipt;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,6 +14,7 @@ public class ReceiptListResponseDto {
     private int stockCnt;
     private Long stockAvr;
     private Long stockId;
+    private BigDecimal stockPrice;
     private String stockName;
     private String stockTicker;
 
@@ -22,6 +24,7 @@ public class ReceiptListResponseDto {
         this.stockCnt = entity.getStockCnt();
         this.stockAvr = entity.getStockAvr();
         this.stockId = entity.getStock().getId();
+        this.stockPrice = entity.getStock().getPrice();
         this.stockName = entity.getStock().getName();
         this.stockTicker = entity.getStock().getTicker();
     }

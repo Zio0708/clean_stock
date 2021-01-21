@@ -26,6 +26,11 @@ public class PortfolioApiController {
     public PortfolioResponseDto findById(@PathVariable Long id){
         return portfolioService.findById(id);
     }
+    @DeleteMapping("/api/v1/portfolio/{id}")
+    public Long delete(@PathVariable Long id){
+        portfolioService.delete(id);
+        return id;
+    }
 
 
 }

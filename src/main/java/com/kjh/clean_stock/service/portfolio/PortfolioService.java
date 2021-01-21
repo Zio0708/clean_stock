@@ -4,6 +4,7 @@ package com.kjh.clean_stock.service.portfolio;
 
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
+import com.kjh.clean_stock.domain.receipt.Receipt;
 import com.kjh.clean_stock.domain.user.User;
 import com.kjh.clean_stock.domain.user.UserRepository;
 import com.kjh.clean_stock.web.dto.Portfolio.*;
@@ -53,5 +54,11 @@ public class PortfolioService {
         return portfolioRepository.findByUser_id(id).stream()
                 .map(PortfolioListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+    @Transactional
+    public void delete(Long id){
+        Portfolio portfolio =portfolioRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("해당 포트폴리오 없음. id="+id));
+        portfolioRepository.delete(portfolio);
     }
 }
