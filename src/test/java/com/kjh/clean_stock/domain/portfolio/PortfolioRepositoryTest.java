@@ -29,18 +29,18 @@ public class PortfolioRepositoryTest {
         portfolioRepository.deleteAll();
     }
 
-//    @Test
-//    public void 포트폴리오_불러오기(){
-//        String name ="테스트_제목";
-//        portfolioRepository.save(Portfolio.builder()
-//                .name(name)
-//                .build());
-//
-//        List<Portfolio> portfolioLists = portfolioRepository.findAll();
-//
-//        Portfolio portfolio = portfolioLists.get(0);
-//        assertThat(portfolio.getName()).isEqualTo(name);
-//    }
+    @Test
+    public void 포트폴리오_불러오기(){
+        String name ="테스트_제목";
+        portfolioRepository.save(Portfolio.builder()
+                .name(name)
+                .build());
+
+        List<Portfolio> portfolioLists = portfolioRepository.findAll();
+
+        Portfolio portfolio = portfolioLists.get(0);
+        assertThat(portfolio.getName()).isEqualTo(name);
+    }
 
 //    @Test
 //    public void 유저아이디로_포트폴리오_불러오기(){

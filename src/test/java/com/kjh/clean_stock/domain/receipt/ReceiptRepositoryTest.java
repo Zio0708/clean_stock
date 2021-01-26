@@ -38,7 +38,10 @@ public class ReceiptRepositoryTest {
     public void cleanup(){
         receiptRepository.deleteAll();
     }
+    @Test
+    public void 임시(){
 
+    }
 //    @Test
 //    public void 주식주문_불러오기() throws IOException, InterruptedException {
 //        String name ="테스트_제목";

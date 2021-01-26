@@ -55,7 +55,10 @@ public class PortfolioApiControllerTest {
     public void tearDown() throws Exception{
         portfolioRepository.deleteAll();
     }
+    @Test
+    public void 임시(){
 
+    }
 //    @Test
 //    @WithMockUser(roles="USER")
 //    public void Portfolio_등록() throws Exception{

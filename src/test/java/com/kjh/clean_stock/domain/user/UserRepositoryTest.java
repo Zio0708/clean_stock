@@ -25,7 +25,10 @@ public class UserRepositoryTest {
     public void cleanup(){
         portfolioRepository.deleteAll();
     }
+    @Test
+    public void 임시(){
 
+    }
 //    @Test
 //    public void 포트폴리오_불러오기(){
 //        String name ="테스트_제목";

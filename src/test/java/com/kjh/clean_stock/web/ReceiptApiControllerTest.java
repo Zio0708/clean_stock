@@ -55,7 +55,10 @@ public class ReceiptApiControllerTest {
     public void tearDown() throws Exception{
         receiptRepository.deleteAll();
     }
+    @Test
+    public void 임시(){
 
+    }
 //    @Test
 //    @WithMockUser(roles="USER")
 //    public void Receipt_등록() throws Exception{

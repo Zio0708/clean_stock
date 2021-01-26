@@ -57,7 +57,10 @@ public class StockApiControllerTest {
     public void tearDown() throws Exception{
         stockRepository.deleteAll();
     }
+    @Test
+    public void 임시(){
 
+    }
 //    @Test
 //    @WithMockUser(roles="USER")
 //    public void 주식_검색(){

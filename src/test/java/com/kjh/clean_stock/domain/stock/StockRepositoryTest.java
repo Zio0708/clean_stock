@@ -29,7 +29,10 @@ public class StockRepositoryTest {
     public void cleanup(){
         stockRepository.deleteAll();
     }
+    @Test
+    public void 임시(){
 
+    }
 //    @Test
 //    public void 주식_단일_불러오기(){
 //        String name ="테스트_제목";
