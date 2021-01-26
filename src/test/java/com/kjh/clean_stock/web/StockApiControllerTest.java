@@ -58,23 +58,23 @@ public class StockApiControllerTest {
         stockRepository.deleteAll();
     }
 
-    @Test
-    @WithMockUser(roles="USER")
-    public void 주식_검색(){
-        String name ="삼성전자";
-        String ticker="005635";
-        String url = "http://localhost:"+port+"/api/v1/stock/search";
-        StockApiSearchDto requestDto = StockApiSearchDto.builder()
-                .name(name)
-                .ticker(ticker)
-                .build();
-        try {
-            mvc.perform(post(url)
-                    .contentType(MediaType.APPLICATION_JSON_UTF8)
-                    .content(new ObjectMapper().writeValueAsString(requestDto)))
-                    .andExpect(status().isOk());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    @WithMockUser(roles="USER")
+//    public void 주식_검색(){
+//        String name ="삼성전자";
+//        String ticker="005635";
+//        String url = "http://localhost:"+port+"/api/v1/stock/search";
+//        StockApiSearchDto requestDto = StockApiSearchDto.builder()
+//                .name(name)
+//                .ticker(ticker)
+//                .build();
+//        try {
+//            mvc.perform(post(url)
+//                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                    .content(new ObjectMapper().writeValueAsString(requestDto)))
+//                    .andExpect(status().isOk());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

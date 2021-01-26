@@ -56,29 +56,29 @@ public class ReceiptApiControllerTest {
         receiptRepository.deleteAll();
     }
 
-    @Test
-    @WithMockUser(roles="USER")
-    public void Receipt_등록() throws Exception{
-        String name ="테스트_제목";
-        Long id = 1L;
-        int stockCnt =10;
-        Long stockAvr = 100L;
-        Long portfolio_id =1L;
-        ReceiptApiSaveDto requestDto = ReceiptApiSaveDto.builder()
-                .stock_id(id)
-                .stockCnt(stockCnt)
-                .stockAvr(stockAvr)
-                .portfolio_id(portfolio_id)
-                .build();
-
-        String url = "http://localhost:"+port+"/api/v1/receipt";
-        mvc.perform(post(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
-
-        List<Receipt> all =receiptRepository.findAll();
-
-        assertThat(all.get(0).getStockAvr()).isEqualTo(stockAvr);
-    }
+//    @Test
+//    @WithMockUser(roles="USER")
+//    public void Receipt_등록() throws Exception{
+//        String name ="테스트_제목";
+//        Long id = 1L;
+//        int stockCnt =10;
+//        Long stockAvr = 100L;
+//        Long portfolio_id =1L;
+//        ReceiptApiSaveDto requestDto = ReceiptApiSaveDto.builder()
+//                .stock_id(id)
+//                .stockCnt(stockCnt)
+//                .stockAvr(stockAvr)
+//                .portfolio_id(portfolio_id)
+//                .build();
+//
+//        String url = "http://localhost:"+port+"/api/v1/receipt";
+//        mvc.perform(post(url)
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(new ObjectMapper().writeValueAsString(requestDto)))
+//                .andExpect(status().isOk());
+//
+//        List<Receipt> all =receiptRepository.findAll();
+//
+//        assertThat(all.get(0).getStockAvr()).isEqualTo(stockAvr);
+//    }
 }
