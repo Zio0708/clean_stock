@@ -34,7 +34,7 @@ public class StockService {
     }
     @Transactional
     public void saveKOSPI() throws IOException, InterruptedException {
-        for (int i = 0; i<2 ;i++){
+        for (int i = 0; i<=1 ;i++){
             TimeUnit.SECONDS.sleep(5);
             List<String> cnt = crawling(i);
             for(int j=0;j<cnt.size();j++){
