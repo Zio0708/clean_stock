@@ -30,52 +30,52 @@ public class StockRepositoryTest {
         stockRepository.deleteAll();
     }
 
-    @Test
-    public void 주식_단일_불러오기(){
-        String name ="테스트_제목";
-        String ticker ="테스트_티커";
-        BigDecimal price= new BigDecimal(100.01);
-        stockRepository.save(Stock.builder()
-                .name(name)
-                .ticker(ticker)
-                .price(price)
-                .build());
-
-        List<Stock> stockLists = stockRepository.findAll();
-
-        Stock stock = stockLists.get(0);
-        System.out.println(stock.getName()+stock.getTicker()+stock.getPrice());
-    }
-    @Test
-    public void KOSPI_불러오기(){
-
-        try {
-            stockService.saveKOSPI();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        List<Stock> stockLists = stockRepository.findAll();
-        Stock stock = stockLists.get(0);
-        System.out.println(stock.getName()+stock.getTicker()+stock.getPrice());
-    }
-    @Test
-    public void 주식_이름_검색(){
-        KOSPI_불러오기();
-        String name = "삼성전자";
-        List<StockListResponseDto> stockAry=stockService.findByName(name);
-        for(StockListResponseDto s : stockAry){
-            System.out.println(s.getName());
-        }
-    }
-    @Test
-    public void 주식_티커_검색(){
-        KOSPI_불러오기();
-        String ticker = "005930";
-        List<StockResponseDto> stockAry=stockService.findByTicker(ticker);
-        for(StockResponseDto s : stockAry){
-            System.out.println("티커는~"+s.getTicker());
-        }
-    }
+//    @Test
+//    public void 주식_단일_불러오기(){
+//        String name ="테스트_제목";
+//        String ticker ="테스트_티커";
+//        BigDecimal price= new BigDecimal(100.01);
+//        stockRepository.save(Stock.builder()
+//                .name(name)
+//                .ticker(ticker)
+//                .price(price)
+//                .build());
+//
+//        List<Stock> stockLists = stockRepository.findAll();
+//
+//        Stock stock = stockLists.get(0);
+//        System.out.println(stock.getName()+stock.getTicker()+stock.getPrice());
+//    }
+//    @Test
+//    public void KOSPI_불러오기(){
+//
+//        try {
+//            stockService.saveKOSPI();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        List<Stock> stockLists = stockRepository.findAll();
+//        Stock stock = stockLists.get(0);
+//        System.out.println(stock.getName()+stock.getTicker()+stock.getPrice());
+//    }
+//    @Test
+//    public void 주식_이름_검색(){
+//        KOSPI_불러오기();
+//        String name = "삼성전자";
+//        List<StockListResponseDto> stockAry=stockService.findByName(name);
+//        for(StockListResponseDto s : stockAry){
+//            System.out.println(s.getName());
+//        }
+//    }
+//    @Test
+//    public void 주식_티커_검색(){
+//        KOSPI_불러오기();
+//        String ticker = "005930";
+//        List<StockResponseDto> stockAry=stockService.findByTicker(ticker);
+//        for(StockResponseDto s : stockAry){
+//            System.out.println("티커는~"+s.getTicker());
+//        }
+//    }
 }

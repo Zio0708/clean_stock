@@ -39,39 +39,39 @@ public class ReceiptRepositoryTest {
         receiptRepository.deleteAll();
     }
 
-    @Test
-    public void 주식주문_불러오기() throws IOException, InterruptedException {
-        String name ="테스트_제목";
-        String ticker ="테스트_티커";
-        BigDecimal price= new BigDecimal(100.01);
-        int stockCnt =10;
-        Long stockAvr = 100L;
-        portfolioRepository.save(Portfolio.builder()
-                .name(name)
-                .build());
-        //stockService.saveKOSPI();
-        stockRepository.save(Stock.builder()
-                .name(name)
-                .price(price)
-                .ticker(ticker)
-                .build());
-
-        List<Stock> stockList =stockRepository.findAll();
-        Stock stock = stockList.get(0);
-        List<Portfolio> portfolioLists = portfolioRepository.findAll();
-        Portfolio portfolio = portfolioLists.get(0);
-
-        receiptRepository.save(Receipt.builder()
-                .stockCnt(stockCnt)
-                .stockAvr(stockAvr)
-                .portfolio(portfolio)
-                .stock(stock)
-                .build());
-
-        List<Receipt> receiptLists = receiptRepository.findAll();
-
-        Receipt receipt = receiptLists.get(0);
-        assertThat(receipt.getStockCnt()).isEqualTo(stockCnt);
-        assertThat(receipt.getStockAvr()).isEqualTo(stockAvr);
-    }
+//    @Test
+//    public void 주식주문_불러오기() throws IOException, InterruptedException {
+//        String name ="테스트_제목";
+//        String ticker ="테스트_티커";
+//        BigDecimal price= new BigDecimal(100.01);
+//        int stockCnt =10;
+//        Long stockAvr = 100L;
+//        portfolioRepository.save(Portfolio.builder()
+//                .name(name)
+//                .build());
+//        //stockService.saveKOSPI();
+//        stockRepository.save(Stock.builder()
+//                .name(name)
+//                .price(price)
+//                .ticker(ticker)
+//                .build());
+//
+//        List<Stock> stockList =stockRepository.findAll();
+//        Stock stock = stockList.get(0);
+//        List<Portfolio> portfolioLists = portfolioRepository.findAll();
+//        Portfolio portfolio = portfolioLists.get(0);
+//
+//        receiptRepository.save(Receipt.builder()
+//                .stockCnt(stockCnt)
+//                .stockAvr(stockAvr)
+//                .portfolio(portfolio)
+//                .stock(stock)
+//                .build());
+//
+//        List<Receipt> receiptLists = receiptRepository.findAll();
+//
+//        Receipt receipt = receiptLists.get(0);
+//        assertThat(receipt.getStockCnt()).isEqualTo(stockCnt);
+//        assertThat(receipt.getStockAvr()).isEqualTo(stockAvr);
+//    }
 }
