@@ -34,7 +34,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: clean-stock-build # S3 버킷
-    key: clean-stock-webservice.zip
+    key: clean_stock.zip #빌드 파일 압축
     bundle_type: zip
     application: clean-stock-webservice
     deployment_group: clean-stock-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
