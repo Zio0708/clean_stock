@@ -36,7 +36,7 @@ deploy:
     bucket: clean-stock-build # S3 버킷
     key: clean_stock.zip #빌드 파일 압축
     bundle_type: zip
-    application: clean-stock-webservice
+    application: clean-stock-webservices #s 붙여봄
     deployment_group: clean-stock-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
