@@ -1,4 +1,4 @@
-package com.kjh.clean_stock.web.controller;
+package com.kjh.clean_stock.web.controller.api;
 
 
 import com.kjh.clean_stock.service.receipt.ReceiptService;

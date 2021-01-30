@@ -1,4 +1,4 @@
-package com.kjh.clean_stock.web.controller;
+package com.kjh.clean_stock.web.controller.view;
 
 
 import com.kjh.clean_stock.config.auth.LoginUser;
@@ -12,21 +12,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class IndexController {
+public class MainController {
     private final StockService stockService;
     private final PortfolioService portfolioService;
     private final ReceiptService receiptService;
 
     @GetMapping("/")
     public String index(@LoginUser SessionUser user, Model model){
+        //
         if (user != null){
             model.addAttribute("userEmail", user.getEmail());//없으면 로그인 버튼 노출
             model.addAttribute("userId", user.getId());

@@ -1,4 +1,4 @@
-package com.kjh.clean_stock.web.controller;
+package com.kjh.clean_stock.web.controller.view;
 
 
 import com.kjh.clean_stock.config.auth.LoginUser;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class ReceiptIndexController {
+public class ReceiptViewController {
     private final ReceiptService receiptService;
 
     @GetMapping("/receipt/save/portfolio_id/{id}")

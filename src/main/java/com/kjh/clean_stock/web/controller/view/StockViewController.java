@@ -1,4 +1,4 @@
-package com.kjh.clean_stock.web.controller;
+package com.kjh.clean_stock.web.controller.view;
 
 
 import com.kjh.clean_stock.service.receipt.ReceiptService;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
-public class StockIndexController {
+public class StockViewController {
     private final ReceiptService receiptService;
 
     @GetMapping("/stock/search")

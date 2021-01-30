@@ -1,32 +1,30 @@
-package com.kjh.clean_stock.web.controller;
+package com.kjh.clean_stock.web.controller.api;
 
 
-import com.kjh.clean_stock.domain.stock.Stock;
+import com.kjh.clean_stock.service.market.KOSPIService;
 import com.kjh.clean_stock.service.stock.StockService;
 import com.kjh.clean_stock.web.dto.Stock.StockApiSearchDto;
 import com.kjh.clean_stock.web.dto.Stock.StockListResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class StockApiController {
-    public final StockService stockService;
+public class AdminApiController {
+    KOSPIService kospiService;
 
-    @PostMapping("/api/v1/stock/search")
-    public List<StockListResponseDto> search (@RequestBody StockApiSearchDto requestDto){
-        String name = requestDto.getName();
-        String ticker = requestDto.getTicker();
-
-        List<StockListResponseDto> stockary= stockService.findByName(name);
-        if(!stockary.isEmpty()){
-            System.out.println(stockary.get(0).getName());
-            return stockary;
+    @PostMapping("/admin/search/kospi")
+    public void searchKOSPI (){
+        try {
+            kospiService.saveKOSPI();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return stockary;
     }
 //    @PostMapping("/api/v1/stock/search")
 //    public String search (@RequestBody StockApiSearchDto requestDto){

@@ -1,10 +1,11 @@
-package com.kjh.clean_stock.web.controller;
+package com.kjh.clean_stock.web.controller.view;
 
 
 import com.kjh.clean_stock.config.auth.LoginUser;
 import com.kjh.clean_stock.config.auth.dto.SessionUser;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.receipt.Receipt;
+import com.kjh.clean_stock.domain.user.User;
 import com.kjh.clean_stock.service.portfolio.PortfolioService;
 import com.kjh.clean_stock.service.receipt.ReceiptService;
 import com.kjh.clean_stock.service.stock.StockService;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class PortfolioIndexController {
+public class PortfolioViewController {
     private final PortfolioService portfolioService;
     private final ReceiptService receiptService;
 
