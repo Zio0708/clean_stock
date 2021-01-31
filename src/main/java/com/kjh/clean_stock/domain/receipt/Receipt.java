@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 
 @Getter
 @NoArgsConstructor
@@ -20,10 +22,12 @@ public class Receipt extends BaseTimeEntity{
     @Column(name = "RECEIPT_ID")
     private Long id;//엔간하면 long 타입 자동증가를 쓰자
 
-    @Column
+
+    @Column(nullable = false)
     private int stockCnt;
 
-    @Column
+    @Min(0)
+    @Column(nullable = false)
     private Long stockAvr;
 
     @ManyToOne

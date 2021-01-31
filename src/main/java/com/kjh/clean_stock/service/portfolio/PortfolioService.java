@@ -4,7 +4,6 @@ package com.kjh.clean_stock.service.portfolio;
 
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.portfolio.PortfolioRepository;
-import com.kjh.clean_stock.domain.receipt.Receipt;
 import com.kjh.clean_stock.domain.user.User;
 import com.kjh.clean_stock.domain.user.UserRepository;
 import com.kjh.clean_stock.web.dto.Portfolio.*;

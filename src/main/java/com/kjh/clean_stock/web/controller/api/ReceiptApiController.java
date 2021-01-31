@@ -9,17 +9,19 @@ import com.kjh.clean_stock.web.dto.Receipt.ReceiptResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RestController
 public class ReceiptApiController {
     public final ReceiptService receiptService;
 
     @PostMapping("/api/v1/receipt")
-    public Long save (@RequestBody ReceiptApiSaveDto requestDto){
+    public Long save (@RequestBody @Valid ReceiptApiSaveDto requestDto){
         return receiptService.save(requestDto);
     }
     @PutMapping("/api/v1/receipt/{id}")
-    public Long update(@PathVariable Long id , @RequestBody ReceiptApiUpdateDto requestDto){
+    public Long update(@PathVariable Long id , @RequestBody @Valid ReceiptApiUpdateDto requestDto){
         return receiptService.update(id,requestDto);
     }
     @DeleteMapping("/api/v1/receipt/{id}")

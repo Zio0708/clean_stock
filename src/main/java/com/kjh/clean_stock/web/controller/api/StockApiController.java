@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class StockApiController {
     public final StockService stockService;
 
     @PostMapping("/api/v1/stock/search")
-    public List<StockListResponseDto> search (@RequestBody StockApiSearchDto requestDto){
+    public List<StockListResponseDto> search (@RequestBody @Valid StockApiSearchDto requestDto){
         String name = requestDto.getName();
         String ticker = requestDto.getTicker();
 

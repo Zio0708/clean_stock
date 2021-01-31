@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
 @Getter
@@ -18,12 +19,14 @@ public class Stock{
     @Column(name = "STOCK_ID")
     private Long id;//엔간하면 long 타입 자동증가를 쓰자
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+
+    @Column(nullable = false)
     private String ticker;
 
+    @DecimalMin(value = "0.0" ,inclusive=false)
     @Column(precision = 11, scale = 2)
     private BigDecimal price;
 

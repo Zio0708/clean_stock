@@ -17,7 +17,7 @@ public class Portfolio extends BaseTimeEntity{
     @Column(name="PORTFOLIO_ID")
     private Long id;//엔간하면 long 타입 자동증가를 쓰자
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @ManyToOne
