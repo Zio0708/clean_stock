@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class AdminApiController {
-    KOSPIService kospiService;
+    public final KOSPIService kospiService;
 
     @GetMapping("/admin/save/kospi")
     public void saveKOSPI (){
