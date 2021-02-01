@@ -10,7 +10,7 @@ var main= { //왜 이거 썼냐면 index로 scope를 한정시키기 위해 사�
     },
     kospi_save : function(){
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: '/admin/save/kospi'
         }).done(function(){
             alert('코스피가 저장되는 중입니다');
@@ -20,7 +20,7 @@ var main= { //왜 이거 썼냐면 index로 scope를 한정시키기 위해 사�
     },
     kospi_update : function(){
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: '/admin/update/kospi'
         }).done(function(){
             alert('코스피가 갱신되는 중입니다');

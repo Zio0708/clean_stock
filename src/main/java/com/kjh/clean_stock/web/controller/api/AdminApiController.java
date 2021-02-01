@@ -16,7 +16,7 @@ import java.util.List;
 public class AdminApiController {
     KOSPIService kospiService;
 
-    @PostMapping("/admin/save/kospi")
+    @GetMapping("/admin/save/kospi")
     public void saveKOSPI (){
         try {
             kospiService.saveKOSPI();
@@ -26,7 +26,7 @@ public class AdminApiController {
             e.printStackTrace();
         }
     }
-    @PostMapping("/admin/update/kospi")
+    @GetMapping("/admin/update/kospi")
     public void updateKOSPI (){
         try {
             kospiService.updateKOSPI();
