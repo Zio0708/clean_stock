@@ -1,11 +1,9 @@
-html{
-    /*//font-family : 'Nanum Barun Gothic Bold';*/
-}
+
 header{
     z-index: 997;
 }
 body{
-    background: #27b06e;
+    background: #304c67;
     font-family : 'Nanum Gothic';
 }
 .header_area{
@@ -24,12 +22,9 @@ body{
     height: 100%;
     align-items: center;
     flex-flow: row nowrap;
-    padding: 0 14px;
-    background: #fff;
-    border-bottom: 1px solid #e7e7e7;
+    background: #304c67;
     position: relative;
     z-index: 10;
-    border-bottom: 1px solid #e7e7e7;
 }
 
 .header_logo{
@@ -43,7 +38,8 @@ body{
     align-items: center;
     flex-flow: row nowrap;
     height: 100%;
-    margin-left: 15px;
+    margin-left: 7px;
+    margin-top:10px;
 }
 
 .header_side{
@@ -51,12 +47,13 @@ body{
     flex-flow: row nowrap;
 }
 .tradingview-wrapper{
-    margin : 15px;
     height:70vh;
+    width:100%;
+    margin:10px;
 }
 .tradingview-widget-container div div {
     height: 85vh !important;
-    width: 150vh !important;
+    /*width: 150vh !important;*/
     border-radius:3px;
 }
 .index-container{
@@ -65,12 +62,40 @@ body{
     justify-content: center;
 }
 .index-portfolio-wrapper{
-    margin: 15px 15px 15px 0;
-    background-color:#ffffff;
-    border-radius:3px;
-    width:50vh;
+    background-color: #ffffff;
+    width:85vh;
     height: 85vh;
+    margin: 10px;
 }
-.clean-stock{
-    font-size:15px;
+.index-portfolio-wrapper-table{
+    margin:5px;
+}
+#clean-stock{
+    font-size: 25px;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+.portfolio-id{
+    margin:5px;
+    align-content: center;
+}
+.side-menu-container{
+    width: 40vh;
+    height: 90vh;
+    margin-top:20px;
+}
+#btn-chart{
+    width:100%;
+    margin-bottom:10px;
+}
+#btn-portfolio{
+    width:100%;
+}
+.btn{
+    color:#cfdbe7;
+}
+#search-stock{
+    background-color: #426a92;
+    color: #86a2bc;
+    width:50vh;
 }

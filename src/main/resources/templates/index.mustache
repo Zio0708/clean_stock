@@ -2,6 +2,10 @@
 
 
 <div class="index-container">
+    <div class="side-menu-container">
+        <a href = "/" class ="btn" id="btn-chart" role="button">차트</a>
+        <a href = "/portfolio" class ="btn" id="btn-portfolio" role="button">포트폴리오</a>
+    </div>
 {{>layout/tradingview-widget}}
 <!--<div class="col-md-12">-->
 <!--    <div class="row">-->
@@ -11,10 +15,14 @@
 <!--    </div>-->
 <!--</div>-->
     <div class="index-portfolio-wrapper">
+        <div class="index-portfolio-wrapper-table">
         <div class="row">
             <div class="col-md-12">
                 {{#portfolio_id}}
-                    <h4>{{portfolio_id}}의 포트폴리오</h4>
+                    <div class="portfolio-id">{{portfolio_id}}의 포트폴리오</div>
+                {{/portfolio_id}}
+                {{^portfolio_id}}
+                    <div class="portfolio-id">포트폴리오가 존재하지 않습니다.</div>
                 {{/portfolio_id}}
             </div>
         </div>
@@ -39,8 +47,9 @@
             </tbody>
         </table>
         {{^receipt}}
-            <h5>자산이 존재하지 않습니다</h5>
+            <div class="no-receipt">자산이 존재하지 않습니다</div>
         {{/receipt}}
+        </div>
     </div>
 </div>
 {{>layout/script}}
