@@ -59,29 +59,28 @@ public class ReceiptApiControllerTest {
     public void 임시(){
 
     }
-//    @Test
-//    @WithMockUser(roles="USER")
-//    public void Receipt_등록() throws Exception{
-//        String name ="테스트_제목";
-//        Long id = 1L;
-//        int stockCnt =10;
-//        Long stockAvr = 100L;
-//        Long portfolio_id =1L;
-//        ReceiptApiSaveDto requestDto = ReceiptApiSaveDto.builder()
-//                .stock_id(id)
-//                .stockCnt(stockCnt)
-//                .stockAvr(stockAvr)
-//                .portfolio_id(portfolio_id)
-//                .build();
-//
-//        String url = "http://localhost:"+port+"/api/v1/receipt";
-//        mvc.perform(post(url)
-//                .contentType(MediaType.APPLICATION_JSON_UTF8)
-//                .content(new ObjectMapper().writeValueAsString(requestDto)))
-//                .andExpect(status().isOk());
-//
-//        List<Receipt> all =receiptRepository.findAll();
-//
-//        assertThat(all.get(0).getStockAvr()).isEqualTo(stockAvr);
-//    }
+    @Test
+    @WithMockUser(roles="USER")
+    public void Receipt_등록() throws Exception{
+        ReceiptApiSaveDto requestDto = ReceiptApiSaveDto.builder()
+                .stock_id(1L)
+                .stockCnt(10)
+                .stockAvr(100L)
+                .portfolio_id(1L)
+                .build();
+        //테스트 순서 - 요청이 들어옴 -> 포트폴리오가 있나 검사 -> 주식이 있나 검사 -> 각각의 주식과 포트폴리오 설계
+        //레포지토리에 저장
+        //이렇기 때문에 포트폴리오/주식 DB저장을 Mock으로 때우고 receipt 객체를 생성해 버리면 에러가 발생한다.
+        //TransientPropertyValueException 에러 발생
+        //그렇다고 receipt 저장도 Mock으로 때워도 되나..? 테스트 하는 목적에 맞나..?
+        String url = "http://localhost:"+port+"/api/v1/receipt";
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        List<Receipt> all =receiptRepository.findAll();
+
+        assertThat(all.get(0).getStockAvr()).isEqualTo(100L);
+    }
 }

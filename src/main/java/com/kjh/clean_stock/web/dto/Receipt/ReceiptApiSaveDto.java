@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 @Getter
 @NoArgsConstructor
 public class ReceiptApiSaveDto {
-    @NotBlank
+    @NotNull
     private int stockCnt;
     @Min(value = 0 , message = "0 이상의 값을 넣어주세요.")
-    @NotBlank
+    @NotNull
     private Long stockAvr;
     @NotNull
     private Long portfolio_id;

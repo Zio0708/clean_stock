@@ -33,22 +33,22 @@ public class StockRepositoryTest {
     public void 임시(){
 
     }
-//    @Test
-//    public void 주식_단일_불러오기(){
-//        String name ="테스트_제목";
-//        String ticker ="테스트_티커";
-//        BigDecimal price= new BigDecimal(100.01);
-//        stockRepository.save(Stock.builder()
-//                .name(name)
-//                .ticker(ticker)
-//                .price(price)
-//                .build());
-//
-//        List<Stock> stockLists = stockRepository.findAll();
-//
-//        Stock stock = stockLists.get(0);
-//        System.out.println(stock.getName()+stock.getTicker()+stock.getPrice());
-//    }
+    @Test
+    public void 주식_단일_불러오기(){
+        String name ="테스트_제목";
+        String ticker ="테스트_티커";
+        BigDecimal price= new BigDecimal(100.01);
+        stockRepository.save(Stock.builder()
+                .name(name)
+                .ticker(ticker)
+                .price(price)
+                .build());
+
+        List<Stock> stockLists = stockRepository.findAll();
+
+        Stock stock = stockLists.get(0);
+        System.out.println(stock.getName()+stock.getTicker()+stock.getPrice());
+    }
 //    @Test
 //    public void KOSPI_불러오기(){
 //
@@ -81,4 +81,5 @@ public class StockRepositoryTest {
 //            System.out.println("티커는~"+s.getTicker());
 //        }
 //    }
+
 }

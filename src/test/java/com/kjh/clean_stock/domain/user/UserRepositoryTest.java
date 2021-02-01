@@ -42,20 +42,21 @@ public class UserRepositoryTest {
 //        assertThat(portfolio.getName()).isEqualTo(name);
 //    }
 //
-//    @Test
-//    public void 유저_불러오기(){
-//        String email = "테스트_유저";
-//        String name = "테스트_이름";
-//        String picture = "테스트_사진진";
-//        Role role = Role.USER;
-//       userRepository.save(User.builder()
-//                .email(email)
-//                .name(name)
-//                .picture(picture)
-//                .role(role)
-//                .build());
-//        List<User> userList = userRepository.findAll();
-//        User user = userList.get(0);
-//        assertThat(user.getName()).isEqualTo(name);
-//    }
+    @Test
+    public void 유저_불러오기(){
+        //String email = "테스트_유저"; validation을 걸어놓으니 실제로 오류가 나는것을 확인
+        String email ="test@email.com";
+        String name = "테스트_이름";
+        String picture = "테스트_사진진";
+        Role role = Role.USER;
+       userRepository.save(User.builder()
+                .email(email)
+                .name(name)
+                .picture(picture)
+                .role(role)
+                .build());
+        List<User> userList = userRepository.findAll();
+        User user = userList.get(0);
+        assertThat(user.getName()).isEqualTo(name);
+    }
 }
