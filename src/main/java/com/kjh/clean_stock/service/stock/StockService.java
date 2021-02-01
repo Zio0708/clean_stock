@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -33,47 +34,57 @@ public class StockService {
         return stockRepository.save(requestDto.toEntity()).getId();
     }
     @Transactional
-    public void saveKOSPI() throws IOException, InterruptedException {
-        for (int i = 0; i<=1 ;i++){
-            TimeUnit.SECONDS.sleep(5);
-            List<String> cnt = crawling(i);
-            for(int j=0;j<cnt.size();j++){
-                String[] ary=cnt.get(j).split("/");
-                //집어넣은 string 정보 추출
-                //System.out.println(ary[0]+" "+ary[2].replaceAll(",",""));
-                StockSaveRequestDto requestDto =
-                        new StockSaveRequestDto(ary[0],ary[1],
-                                new BigDecimal(ary[2].replaceAll(",","")));
-                //해당 엔티티에 맞게 가공하여 요청 dto만듬
-                stockRepository.save(requestDto.toEntity());
-                //저장 요청 전송
-            }
+    public void updateDaliy(StockSaveRequestDto requestDto) {
+        Stock stock = stockRepository.findByTicker(requestDto.getTicker());
+        if(stock ==null){
+            stockRepository.save(requestDto.toEntity());
+        }
+        else{
+            stock.update(requestDto);
         }
     }
-    public List crawling(int num) throws IOException {
-
-        String url = "https://finance.naver.com/sise/sise_market_sum.nhn?sosok=0&page="+num;
-        Document doc = Jsoup.connect(url).get();
-        doc.html();
-        Elements elem = doc.select("table>tbody");
-        int cnt=0;
-        List<String> list = new ArrayList<>();
-        for(Element e : elem.select("tr")){
-            if(cnt>=6 && e.text().length()>=30) {
-                String hre=e.select("a").attr("href").split("=")[1];
-                //해당 링크 내의 종목코드만 뽑아낸다.
-                Elements ename =e.select("td:eq(1)");
-                //종목 이름
-                Elements eprice =e.select("td:eq(2)");
-                //현재가
-                list.add(ename.text() + "/"+hre+"/"+ eprice.text());
-                //리스트에 그냥 일괄적으로 삽입
-            }
-            cnt++;
-        }
-        //System.out.println(elem.text());
-        return list;
-    }
+    //    @Transactional
+//    public void saveKOSPI() throws IOException, InterruptedException {
+//        for (int i = 0; i<=1 ;i++){
+//            TimeUnit.SECONDS.sleep(5);
+//            List<String> cnt = crawling(i);
+//            for(int j=0;j<cnt.size();j++){
+//                String[] ary=cnt.get(j).split("/");
+//                //집어넣은 string 정보 추출
+//                //System.out.println(ary[0]+" "+ary[2].replaceAll(",",""));
+//                StockSaveRequestDto requestDto =
+//                        new StockSaveRequestDto(ary[0],ary[1],
+//                                new BigDecimal(ary[2].replaceAll(",","")));
+//                //해당 엔티티에 맞게 가공하여 요청 dto만듬
+//                stockRepository.save(requestDto.toEntity());
+//                //저장 요청 전송
+//            }
+//        }
+//    }
+//    public List crawling(int num) throws IOException {
+//
+//        String url = "https://finance.naver.com/sise/sise_market_sum.nhn?sosok=0&page="+num;
+//        Document doc = Jsoup.connect(url).get();
+//        doc.html();
+//        Elements elem = doc.select("table>tbody");
+//        int cnt=0;
+//        List<String> list = new ArrayList<>();
+//        for(Element e : elem.select("tr")){
+//            if(cnt>=6 && e.text().length()>=30) {
+//                String hre=e.select("a").attr("href").split("=")[1];
+//                //해당 링크 내의 종목코드만 뽑아낸다.
+//                Elements ename =e.select("td:eq(1)");
+//                //종목 이름
+//                Elements eprice =e.select("td:eq(2)");
+//                //현재가
+//                list.add(ename.text() + "/"+hre+"/"+ eprice.text());
+//                //리스트에 그냥 일괄적으로 삽입
+//            }
+//            cnt++;
+//        }
+//        //System.out.println(elem.text());
+//        return list;
+//    }
     public List<StockListResponseDto> findByName(String name) {
         name = name+"%";
 //        List<Stock> stockAry = stockRepository.findByName(name);
@@ -100,4 +111,5 @@ public class StockService {
                 .orElseThrow(() -> new IllegalArgumentException("자산이 존재하지 않습니다."));
         return new StockResponseDto(stock);
     }
+
 }

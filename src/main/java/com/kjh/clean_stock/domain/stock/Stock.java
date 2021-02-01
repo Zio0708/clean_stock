@@ -1,6 +1,7 @@
 package com.kjh.clean_stock.domain.stock;
 
 
+import com.kjh.clean_stock.web.dto.Stock.StockSaveRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,5 +42,10 @@ public class Stock{
         this.name = name;
         this.ticker = ticker;
         this.price = price;
+    }
+    public void update(StockSaveRequestDto requestDto){
+        this.name = requestDto.getName();
+        this.ticker = requestDto.getTicker();
+        this.price = requestDto.getPrice();
     }
 }
