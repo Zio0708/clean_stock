@@ -42,6 +42,9 @@ public class StockService {
         else{
             stock.update(requestDto);
         }
+        //update daliy는 매일마다 마켓을 업데이트하기 위한 메소드이다
+        //이미 있는 주식의 경우에는 업데이트를 , 존재하지 않던 주식의 경우에는 새로 추가를 한다.
+        //도메인 모델로 이런 유효성 검사를 포함하는 코드를 작성할 수 있는지 알아볼 예정이다.
     }
     //    @Transactional
 //    public void saveKOSPI() throws IOException, InterruptedException {

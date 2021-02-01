@@ -62,6 +62,7 @@ public class KOSPIService {
                 stockService.save(requestDto);
                 //저장 요청 전송이지만...
                 //서비스에서 다른 서비스를 요청하는 건? 코스피 서비스가 주식 서비스에 역할을 넘겨야 하는거 아닌가?
+                //repository를 불러야 하는지 service를 부르는지 확인 요망.
             }
             TimeUnit.SECONDS.sleep(5);
         }
