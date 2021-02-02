@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 public class UtilityService {
 
     public BigDecimal calculateProfitRate(BigDecimal curPrice, BigDecimal havePrice){
-        BigDecimal price =curPrice.divide(havePrice,2, RoundingMode.HALF_UP);
+        BigDecimal price =curPrice.divide(havePrice,4, RoundingMode.HALF_UP);
         price = price.subtract(new BigDecimal(1));
         price = price.multiply(new BigDecimal(100));
         return price;

@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,8 +20,14 @@ public class ReceiptServiceTest {
 
     @Test
     public void CalculateProfitRateTest(){
-        BigDecimal curPrice=new BigDecimal(100);
-        BigDecimal havePrice=new BigDecimal(150);
+        BigDecimal curPrice=new BigDecimal(125500.00);
+        BigDecimal havePrice=new BigDecimal(280000.00);
+        BigDecimal price =curPrice.divide(havePrice,4, RoundingMode.HALF_UP);
+        System.out.println(price);
+        price = price.subtract(new BigDecimal(1));
+        System.out.println(price);
+        price = price.multiply(new BigDecimal(100));
+        System.out.println(price);
         BigDecimal profitRate = utilityService.calculateProfitRate(curPrice,havePrice);
         System.out.println(profitRate);
     }
