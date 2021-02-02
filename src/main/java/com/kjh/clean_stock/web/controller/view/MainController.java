@@ -8,6 +8,7 @@ import com.kjh.clean_stock.service.receipt.ReceiptService;
 import com.kjh.clean_stock.service.stock.StockService;
 import com.kjh.clean_stock.web.dto.Portfolio.PortfolioListResponseDto;
 import com.kjh.clean_stock.web.dto.Receipt.ReceiptListResponseDto;
+import com.kjh.clean_stock.web.dto.Receipt.ReceiptViewResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +31,12 @@ public class MainController {
             List<PortfolioListResponseDto> portfolioAry = portfolioService.findByUserId(user.getId());
             if (!portfolioAry.isEmpty()) {
                 model.addAttribute("portfolioName", portfolioAry.get(0).getName());
-                List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioAry.get(0).getId());
-                if (!receiptList.isEmpty()) {
-                    model.addAttribute("receipt", receiptList);
-                    model.addAttribute("widgetTicker", receiptList.get(0).getStockTicker());
-                    System.out.println(receiptList.get(0).getStockTicker());
+                //List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioAry.get(0).getId());
+                List<ReceiptViewResponseDto> receiptViewResponseDtoList
+                        = receiptService.findViewByPortfolioId(portfolioAry.get(0).getId());
+                if (!receiptViewResponseDtoList.isEmpty()) {
+                    model.addAttribute("receipt", receiptViewResponseDtoList);
+                    model.addAttribute("widgetTicker", receiptViewResponseDtoList.get(0).getStockTicker());
                 }
             }
         }//해당 로그인 코드 자체가 반복되는데 이를 줄일수 있는 방법이 있을까?
