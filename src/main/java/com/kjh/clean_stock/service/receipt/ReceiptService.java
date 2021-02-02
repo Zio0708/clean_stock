@@ -100,10 +100,10 @@ public class ReceiptService {
         List<ReceiptViewResponseDto> viewResponseDtos = new ArrayList<>();
         for(Receipt response : responses ){
             BigDecimal curPrice = response.getStock().getPrice();
-            Long havePrice =response.getStockAvr();
+            BigDecimal havePrice =response.getStockAvr();
             int amount = response.getStockCnt();
-            Long profitRate = utilityService.calculateProfitRate(curPrice.longValue(),havePrice);
-            Long profitPrice = utilityService.calculateAllProfitPrice(curPrice.longValue(),havePrice,amount);
+            BigDecimal profitRate = utilityService.calculateProfitRate(curPrice,havePrice);
+            BigDecimal profitPrice = utilityService.calculateAllProfitPrice(curPrice,havePrice,amount);
             viewResponseDtos.add(new ReceiptViewResponseDto(response,profitRate,profitPrice));
         }
         return viewResponseDtos;

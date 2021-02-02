@@ -7,16 +7,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Getter
 @NoArgsConstructor
 public class ReceiptUpdateRequestDto {
     private int stockCnt;
-    private Long stockAvr;
+    private BigDecimal stockAvr;
     private Portfolio portfolio;
     private Stock stock;
 
     @Builder
-    public ReceiptUpdateRequestDto(int stockCnt, Long stockAvr, Portfolio portfolio,Stock stock){
+    public ReceiptUpdateRequestDto(int stockCnt, BigDecimal stockAvr, Portfolio portfolio, Stock stock){
         this.stockCnt= stockCnt;
         this.stockAvr=stockAvr;
         this.portfolio=portfolio;

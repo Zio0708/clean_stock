@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -17,19 +19,17 @@ public class ReceiptServiceTest {
 
     @Test
     public void CalculateProfitRateTest(){
-        Long curPrice=100L;
-        Long havePrice=100L;
-        Long profitRate = utilityService.calculateProfitRate(curPrice,havePrice);
+        BigDecimal curPrice=new BigDecimal(100);
+        BigDecimal havePrice=new BigDecimal(150);
+        BigDecimal profitRate = utilityService.calculateProfitRate(curPrice,havePrice);
         System.out.println(profitRate);
-        assertThat(profitRate).isEqualTo(0);
     }
     @Test
     public void CalculateProfitPriceTest(){
-        Long curPrice=100L;
-        Long havePrice=100L;
-        Long profitPrice = utilityService.calculateAllProfitPrice(curPrice,havePrice,1);
+        BigDecimal curPrice=new BigDecimal(100);
+        BigDecimal havePrice=new BigDecimal(150);
+        BigDecimal profitPrice = utilityService.calculateAllProfitPrice(curPrice,havePrice,1);
         System.out.println(profitPrice);
-        assertThat(profitPrice).isEqualTo(0);
     }
     //테스트 이후에 만든다면 이렇게 하는게...맞나..?
 }

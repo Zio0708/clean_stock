@@ -4,11 +4,13 @@ import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.receipt.Receipt;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Getter
 public class ReceiptResponseDto {
     private Long id;
     private int stockCnt;
-    private Long stockAvr;
+    private BigDecimal stockAvr;
     private Long portfolio_id;
     private Long stock_id;
 

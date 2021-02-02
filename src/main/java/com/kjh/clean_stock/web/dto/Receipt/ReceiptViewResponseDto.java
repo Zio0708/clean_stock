@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class ReceiptViewResponseDto {
     private Long id;
     private int stockCnt;
-    private Long stockAvr;
+    private BigDecimal stockAvr;
     private Long stockId;
     private BigDecimal stockPrice;
     private String stockName;
@@ -22,10 +22,10 @@ public class ReceiptViewResponseDto {
     //손익 : (stockprice-stockAvr)*stockCnt;
     //그러면 계산은 자산 정보 리스트를 반환하는 Dto에서 하는 게 맞는지,
     //엔티티인 receipt에서 하는것이 맞는지 질문드립니다.
-    private Long profitRate;//수익률
-    private Long profitPrice;//손익
+    private BigDecimal profitRate;//수익률
+    private BigDecimal profitPrice;//손익
 
-    public ReceiptViewResponseDto(Receipt entity ,Long profitRate,Long profitPrice){
+    public ReceiptViewResponseDto(Receipt entity ,BigDecimal profitRate,BigDecimal profitPrice){
         this.id =entity.getId();
         this.stockCnt = entity.getStockCnt();
         this.stockAvr = entity.getStockAvr();

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class ReceiptListResponseDto {
     private Long id;
     private int stockCnt;
-    private Long stockAvr;
+    private BigDecimal stockAvr;
     private Long stockId;
     private BigDecimal stockPrice;
     private String stockName;

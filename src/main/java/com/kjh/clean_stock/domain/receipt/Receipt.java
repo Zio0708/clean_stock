@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import java.math.BigDecimal;
 
 @Getter
 @NoArgsConstructor
@@ -26,9 +27,9 @@ public class Receipt extends BaseTimeEntity{
     @Column(nullable = false)
     private int stockCnt;
 
-    @Min(0)
-    @Column(nullable = false)
-    private Long stockAvr;
+    @DecimalMin(value = "0.0" ,inclusive=false)
+    @Column(precision = 11, scale = 2)
+    private BigDecimal stockAvr;
 
     @ManyToOne
     @JoinColumn(name="PORTFOLIO_ID")
@@ -39,14 +40,14 @@ public class Receipt extends BaseTimeEntity{
     private Stock stock;
 
     @Builder
-    public Receipt(int stockCnt, Long stockAvr,Portfolio portfolio,Stock stock){
+    public Receipt(int stockCnt, BigDecimal stockAvr,Portfolio portfolio,Stock stock){
         this.stockCnt = stockCnt;
         this.stockAvr = stockAvr;
         this.portfolio = portfolio;
         this.stock = stock;
     }
 
-    public void update(int stockCnt, Long stockAvr,Portfolio portfolio){
+    public void update(int stockCnt, BigDecimal stockAvr,Portfolio portfolio){
         this.stockCnt = stockCnt;
         this.stockAvr = stockAvr;
         this.portfolio = portfolio;

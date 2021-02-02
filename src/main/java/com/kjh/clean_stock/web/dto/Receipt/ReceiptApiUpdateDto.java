@@ -10,6 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Getter
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class ReceiptApiUpdateDto {
     private int stockCnt;
     @Min(value = 0, message= "0 이상의 값만 넣어주세요")
     @NotNull
-    private Long stockAvr;
+    private BigDecimal stockAvr;
     @NotNull
     private Long portfolio_id;
     @NotNull
@@ -26,7 +27,7 @@ public class ReceiptApiUpdateDto {
 
 
     @Builder
-    public ReceiptApiUpdateDto(int stockCnt, Long stockAvr, Long portfolio_id,Long stock_id){
+    public ReceiptApiUpdateDto(int stockCnt, BigDecimal stockAvr, Long portfolio_id,Long stock_id){
         this.stockCnt= stockCnt;
         this.stockAvr=stockAvr;
         this.portfolio_id=portfolio_id;
