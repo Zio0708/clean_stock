@@ -9,11 +9,13 @@ import com.kjh.clean_stock.domain.receipt.Receipt;
 import com.kjh.clean_stock.domain.receipt.ReceiptRepository;
 import com.kjh.clean_stock.domain.stock.Stock;
 import com.kjh.clean_stock.domain.stock.StockRepository;
+import com.kjh.clean_stock.service.market.UtilityService;
 import com.kjh.clean_stock.web.dto.Receipt.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +26,7 @@ public class ReceiptService {
     private final ReceiptRepository receiptRepository;
     private final PortfolioRepository portfolioRepository;
     private final StockRepository stockRepository;
+    private final UtilityService utilityService;
 
     @Transactional
     public Long save(ReceiptApiSaveDto requestDto){ //구입한 주식 정보를 저장하는 서비스 메서드입니다.
@@ -46,10 +49,12 @@ public class ReceiptService {
         //뭐가 맞는건지 나중에 리팩토링을 통해 알아봐야지
     }
 
-    public ReceiptListResponseDto findById(Long id) {
+    public ReceiptListResponseDto findById(Long id) {//무슨 아이디인지 모름->포트폴리오 아이디? 자산 아이디?
+        //올바르게 적어서 보자마자 이해할 수 있어야 함. (보통은 본인 객체 id니까 상관없을수도있다.)
 //        Receipt receipt = receiptRepository.findById(id)
 //                .orElseThrow(() -> new IllegalArgumentException("구입정보가 존재하지 않습니다."));
 //        return new ReceiptResponseDto(receipt);
+
         ReceiptListResponseDto ary = new ReceiptListResponseDto(receiptRepository.findById(id).get());
         return ary;
     }
@@ -62,7 +67,6 @@ public class ReceiptService {
         receipt.update(requestDto.getStockCnt(),requestDto.getStockAvr(),portfolio);
         return id;
     }
-
 //    @Transactional(readOnly = true)
 //    public List<ReceiptListResponseDto> findAllDesc(){
 //        return receiptRepository.findAllDesc().stream()
@@ -70,7 +74,7 @@ public class ReceiptService {
 //                .collect(Collectors.toList());
 //    }
     @Transactional(readOnly = true)
-    public List<ReceiptListResponseDto> findByPortfolioId(Long id){
+    public List<ReceiptListResponseDto> findByPortfolioId(Long portfolioId){
         //receiptRepository.findByPortfolio_id(id).get(0).getStock().getName();
         //receiptRepository.findByPortfolio_id(id).get(0).getStock().getTicker();
         //이것을 List<ReceiptListResponseDto>에 담아서 리턴한다.
@@ -85,10 +89,24 @@ public class ReceiptService {
 //            .build());
 //        }//점점 이상해지는거 같은데...리스트에 담겨야 하는 정보를 꺼내기 위해서 이렇게 해야 하는게 맞는가?
         //자산 구매 항목 내부의 주식정보를 가져온다.
-        return receiptRepository.findByPortfolio_id(id).stream()
+        return receiptRepository.findByPortfolio_id(portfolioId).stream()
                 .map(ReceiptListResponseDto::new)
                 .collect(Collectors.toList());
         //스트림이란 뭘까? 왜쓸까?
+    }
+    @Transactional
+    public List<ReceiptViewResponseDto> findViewByPortfolioId(Long portfolioId){
+        List<Receipt> responses =receiptRepository.findByPortfolio_id(portfolioId);
+        List<ReceiptViewResponseDto> viewResponseDtos = new ArrayList<>();
+        for(Receipt response : responses ){
+            BigDecimal curPrice = response.getStock().getPrice();
+            Long havePrice =response.getStockAvr();
+            int amount = response.getStockCnt();
+            Long profitRate = utilityService.calculateProfitRate(curPrice.longValue(),havePrice);
+            Long profitPrice = utilityService.calculateAllProfitPrice(curPrice.longValue(),havePrice,amount);
+            viewResponseDtos.add(new ReceiptViewResponseDto(response,profitRate,profitPrice));
+        }
+        return viewResponseDtos;
     }
     //포트폴리오 아이디를 통해서 자산 구매 항목 내부의 주식 정보를 꺼내와야 하는데....
     @Transactional
@@ -97,4 +115,5 @@ public class ReceiptService {
                 .orElseThrow(()->new IllegalArgumentException("해당 자산 없음. id="+id));
         receiptRepository.delete(receipt);
     }
+
 }

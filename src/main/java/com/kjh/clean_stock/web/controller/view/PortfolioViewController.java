@@ -12,6 +12,7 @@ import com.kjh.clean_stock.service.stock.StockService;
 import com.kjh.clean_stock.web.dto.Portfolio.PortfolioListResponseDto;
 import com.kjh.clean_stock.web.dto.Portfolio.PortfolioResponseDto;
 import com.kjh.clean_stock.web.dto.Receipt.ReceiptListResponseDto;
+import com.kjh.clean_stock.web.dto.Receipt.ReceiptViewResponseDto;
 import com.kjh.clean_stock.web.dto.Stock.StockListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -60,9 +61,12 @@ public class PortfolioViewController {
             PortfolioResponseDto portfolioResponseDto=  portfolioService.findById(id);
             if(portfolioResponseDto != null) {
                 model.addAttribute("portfolio", portfolioResponseDto);
-                List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioResponseDto.getId());
-                if(receiptList !=null){
-                    model.addAttribute("receipt",receiptList);
+                //List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioResponseDto.getId());
+                List<ReceiptViewResponseDto> receiptViewResponseDtoList
+                        = receiptService.findViewByPortfolioId(portfolioResponseDto.getId());
+                //가져온 자산현황들에 수익률과 수익을 추가해야함.
+                if(receiptViewResponseDtoList !=null){
+                    model.addAttribute("receipt",receiptViewResponseDtoList);
                 }
             }
         }
