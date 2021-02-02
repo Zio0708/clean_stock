@@ -14,7 +14,7 @@ public class UtilityService {
         BigDecimal price =curPrice.divide(havePrice,4, RoundingMode.HALF_UP);
         price = price.subtract(new BigDecimal(1));
         price = price.multiply(new BigDecimal(100));
-        return price;
+        return price.setScale(2,RoundingMode.DOWN);
     }
     public BigDecimal calculateAllProfitPrice(BigDecimal curPrice,BigDecimal havePrice,int amount){
         BigDecimal price =curPrice.subtract(havePrice);
