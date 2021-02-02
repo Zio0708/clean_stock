@@ -1,0 +1,20 @@
+<header class="header_area">
+    <div class="header_body">
+        <a href = "/stock/search" class ="btn" id="search-stock" role="button">
+            주식명 또는 티커를 입력하세요(개발중)
+        </a>
+        <div class="header_side">
+            {{#userId}}
+                <input type = "hidden" class = "form-control" id ="user_id" value={{userId}}>
+            {{/userId}}
+            {{#userEmail}} <!-- 머스태치 특성상 if 문이없기때문에 최종값 userName의 진위만 판단함-->
+                <span id = "user">{{userEmail}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- 로그아웃은 기본제공이라구~-->
+            {{/userEmail}}
+            {{^userEmail}}<!-- 없을 때에는 ^를 사용하여 준다-->
+                <a href = "/oauth2/authorization/google" class ="btn btn-secondary active" role="button">Google Login</a>
+                <a href = "/oauth2/authorization/naver" class ="btn btn-success active" role="button">Naver Login</a>
+            {{/userEmail}}
+        </div>
+    </div>
+</header>

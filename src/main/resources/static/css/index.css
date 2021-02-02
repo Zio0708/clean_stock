@@ -25,6 +25,7 @@ body{
     background: #304c67;
     position: relative;
     z-index: 10;
+    margin : 10px 10px 0px 10px
 }
 
 .header_logo{
@@ -49,23 +50,23 @@ body{
 .tradingview-wrapper{
     height:70vh;
     width:100%;
-    margin:10px;
+    margin:10px 0px 0px 10px;
 }
 .tradingview-widget-container div div {
-    height: 85vh !important;
+    height: 87vh !important;
     /*width: 150vh !important;*/
     border-radius:3px;
 }
 .index-container{
     display:flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    /*justify-content: center;*/
 }
 .index-portfolio-wrapper{
     background-color: #ffffff;
-    width:85vh;
-    height: 85vh;
-    margin: 10px;
+    width:80vh;
+    height: 87vh;
+    margin: 10px 10px 10px 0;
 }
 .index-portfolio-wrapper-table{
     margin:5px;
@@ -74,22 +75,25 @@ body{
     font-size: 25px;
     margin-top: 3px;
     margin-left: 10px;
+    margin-bottom:10px;
 }
 .portfolio-id{
     margin:5px;
     align-content: center;
 }
 .side-menu-container{
-    width: 40vh;
+    width: 220px;
     height: 90vh;
-    margin-top:20px;
+    /*margin-top:20px;*/
 }
 #btn-chart{
     width:100%;
     margin-bottom:10px;
+    text-align: left;
 }
 #btn-portfolio{
     width:100%;
+    text-align: left;
 }
 .btn{
     color:#cfdbe7;
@@ -98,4 +102,18 @@ body{
     background-color: #426a92;
     color: #86a2bc;
     width:50vh;
+}
+.search-stock-wrapper{
+    margin-top: 10px;
+    margin-left:10px;
+}
+.tradingview-portfolio-wrapper{
+    display:flex;
+    flex-flow: row nowrap;
+}
+.main-container{
+    width:100%;
+}
+.side-menu{
+    margin-top:20px;
 }

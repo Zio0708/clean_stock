@@ -1,20 +1,12 @@
-{{>layout/header}}
-
+{{>layout/header2}}
 
 <div class="index-container">
-    <div class="side-menu-container">
-        <a href = "/" class ="btn" id="btn-chart" role="button">차트</a>
-        <a href = "/portfolio" class ="btn" id="btn-portfolio" role="button">포트폴리오</a>
-    </div>
-{{>layout/tradingview-widget}}
-<!--<div class="col-md-12">-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-12">-->
-<!--            <a href="/portfolio/save" role="button" class="btn btn-info active">포트폴리오 등록</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-    <div class="index-portfolio-wrapper">
+    {{>layout/side-menu}}
+    <div class="main-container">
+        {{>layout/search-login}}
+        <div class="tradingview-portfolio-wrapper">
+            {{>layout/tradingview-widget}}
+            <div class="index-portfolio-wrapper">
         <div class="index-portfolio-wrapper-table">
         <div class="row">
             <div class="col-md-12">
@@ -49,6 +41,8 @@
         {{^receipt}}
             <div class="no-receipt">자산이 존재하지 않습니다</div>
         {{/receipt}}
+        </div>
+    </div>
         </div>
     </div>
 </div>
