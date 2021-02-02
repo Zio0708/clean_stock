@@ -29,7 +29,7 @@ public class MainController {
             model.addAttribute("userId", user.getId());
             List<PortfolioListResponseDto> portfolioAry = portfolioService.findByUserId(user.getId());
             if (!portfolioAry.isEmpty()) {
-                model.addAttribute("portfolioId", portfolioAry.get(0).getId());
+                model.addAttribute("portfolioName", portfolioAry.get(0).getName());
                 List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioAry.get(0).getId());
                 if (!receiptList.isEmpty()) {
                     model.addAttribute("receipt", receiptList);

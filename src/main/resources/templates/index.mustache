@@ -10,9 +10,9 @@
         <div class="index-portfolio-wrapper-table">
         <div class="row">
             <div class="col-md-12">
-                {{#portfolioId}}
-                    <div class="portfolio-id">{{portfolioId}}의 포트폴리오</div>
-                {{/portfolioId}}
+                {{#portfolioName}}
+                    <div class="portfolio-id">{{portfolioName}}의 포트폴리오</div>
+                {{/portfolioName}}
                 {{^portfolioId}}
                     <div class="portfolio-id">포트폴리오가 존재하지 않습니다.</div>
                 {{/portfolioId}}
@@ -31,8 +31,8 @@
             {{#receipt}}
                 <tr>
                     <td>{{stockName}}</td>
-                    <td>{{stockCnt}}</td>
-                    <td>{{stockAvr}}</td>
+                    <td>{{profitPrice}}</td>
+                    <td>{{profitRate}}</td>
                     <td>{{stockPrice}}</td>
                 </tr>
             {{/receipt}}
