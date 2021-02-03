@@ -3,25 +3,29 @@
 <div class="index-container">
     {{>layout/side-menu}}
     <div class="main-container">
+        {{>layout/search-login}}
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-12">
-                    #{{portfolio.id}} {{portfolio.name}} 포트폴리오
+                <div class="portfolio-id" id ="clean-stock">
+                    <h2>{{portfolio.name}} 의 포트폴리오<h2>
                 </div>
             </div>
             <table class="table table-horizontal table-bordered">
                 <thead class="thead-strong">
                 <tr>
-                    <th>평가 금액</th>
-                    <th>평가 손익</th>
-                    <th>수익률</th>
+                    <th>{{portfolio.name}} 금액</th>
+                    <th>손익</th>
+                    <th>시작 금액</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
                     <tr>
-                        <td>1000$</td>
-                        <td>+100$</td>
-                        <td>10%</td>
+                        <td>
+                            <h4>{{portfolioCurPrice}}</h4>
+                            <h5>{{portfolioPriceRate}} %</h5>
+                        </td>
+                        <td><h4>{{portfolioAllProfitPrice}}</h4></td>
+                        <td><h4>{{portfolioHavePrice}}</h4></td>
                     </tr>
                 </tbody>
             </table>

@@ -81,7 +81,7 @@ public class PortfolioViewController {
                     model.addAttribute("receipt",receiptViewResponseDtoList);
                     model.addAttribute("portfolioHavePrice",portfolioHavePrice);
                     model.addAttribute("portfolioAllProfitPrice",portfolioAllProfitPrice);
-                    model.addAttribute("portfolioCurPrice",portfolioAllProfitPrice);
+                    model.addAttribute("portfolioCurPrice",portfolioCurPrice);
                     model.addAttribute("portfolioPriceRate",portfolioPriceRate);
 
 
