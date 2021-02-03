@@ -29,7 +29,7 @@ import java.util.List;
 public class PortfolioViewController {
     private final PortfolioService portfolioService;
     private final ReceiptService receiptService;
-    private UtilityService utilityService;
+    private final UtilityService utilityService;
 
     @GetMapping("/portfolio")
     public String index(Model model , @LoginUser SessionUser user) {
