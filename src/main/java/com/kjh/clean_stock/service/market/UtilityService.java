@@ -26,14 +26,14 @@ public class UtilityService {
     public BigDecimal calculateAllProfitPrice(List<ReceiptViewResponseDto> receiptViewResponseDtoList){
         BigDecimal price = new BigDecimal(0);
         for(ReceiptViewResponseDto receipt : receiptViewResponseDtoList){
-            price.add(receipt.getProfitPrice());
+            price = price.add(receipt.getProfitPrice());
         }
         return price;
     }
     public BigDecimal calAllPrice(List<ReceiptViewResponseDto> receiptViewResponseDtoList) {
         BigDecimal price = new BigDecimal(0);
         for(ReceiptViewResponseDto receipt : receiptViewResponseDtoList){
-            price.add(receipt.getStockAvr().multiply(new BigDecimal(receipt.getStockCnt())));
+            price = price.add(receipt.getStockAvr().multiply(new BigDecimal(receipt.getStockCnt())));
         }
         return price;
     }
