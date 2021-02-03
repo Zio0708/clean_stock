@@ -6,6 +6,7 @@ import com.kjh.clean_stock.config.auth.dto.SessionUser;
 import com.kjh.clean_stock.domain.portfolio.Portfolio;
 import com.kjh.clean_stock.domain.receipt.Receipt;
 import com.kjh.clean_stock.domain.user.User;
+import com.kjh.clean_stock.service.market.UtilityService;
 import com.kjh.clean_stock.service.portfolio.PortfolioService;
 import com.kjh.clean_stock.service.receipt.ReceiptService;
 import com.kjh.clean_stock.service.stock.StockService;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,6 +29,7 @@ import java.util.List;
 public class PortfolioViewController {
     private final PortfolioService portfolioService;
     private final ReceiptService receiptService;
+    private UtilityService utilityService;
 
     @GetMapping("/portfolio")
     public String index(Model model , @LoginUser SessionUser user) {
@@ -64,9 +67,24 @@ public class PortfolioViewController {
                 //List<ReceiptListResponseDto> receiptList = receiptService.findByPortfolioId(portfolioResponseDto.getId());
                 List<ReceiptViewResponseDto> receiptViewResponseDtoList
                         = receiptService.findViewByPortfolioId(portfolioResponseDto.getId());
+
                 //가져온 자산현황들에 수익률과 수익을 추가해야함.
                 if(receiptViewResponseDtoList !=null){
+                    BigDecimal portfolioHavePrice =
+                            utilityService.calAllPrice(receiptViewResponseDtoList);
+                    BigDecimal portfolioAllProfitPrice =
+                            utilityService.calculateAllProfitPrice(receiptViewResponseDtoList);
+                    BigDecimal portfolioCurPrice =
+                            portfolioHavePrice.add(portfolioAllProfitPrice);
+                    BigDecimal portfolioPriceRate =
+                            utilityService.calculateProfitRate(portfolioCurPrice,portfolioHavePrice);
                     model.addAttribute("receipt",receiptViewResponseDtoList);
+                    model.addAttribute("portfolioHavePrice",portfolioHavePrice);
+                    model.addAttribute("portfolioAllProfitPrice",portfolioAllProfitPrice);
+                    model.addAttribute("portfolioCurPrice",portfolioAllProfitPrice);
+                    model.addAttribute("portfolioPriceRate",portfolioPriceRate);
+
+
                 }
             }
         }
