@@ -69,8 +69,7 @@ var main= { //왜 이거 썼냐면 index로 scope를 한정시키기 위해 사�
         });
     },
     portfolio_delete : function(){
-        var id = $('#id').val();
-
+        var id = $('#portfolio_id').val();
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/portfolio/'+id,

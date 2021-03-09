@@ -76,9 +76,11 @@ body{
     margin-top: 3px;
     margin-left: 10px;
     margin-bottom:10px;
+    color: #cfdbe7;
 }
 .portfolio-id{
     margin:5px;
+    margin-top: 20px;
     align-content: center;
 }
 .side-menu-container{
